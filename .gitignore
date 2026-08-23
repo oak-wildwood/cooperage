@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# allow the env template
+!.env.example
+
+# vendored tooling — keeps the public repo focused on app code
+/.claude/skills/
+/.claude/settings.local.json
+/.impeccable/
