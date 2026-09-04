@@ -2,6 +2,11 @@
 
 # cooperage — project context
 
+> **Start here: [`PLAN.md`](./PLAN.md).** It carries the settled design direction, the
+> reasoning behind each decision, what is built, and what is left. Read it before
+> touching the design or the build — it exists so a cold session does not re-litigate
+> choices that are already made.
+
 Personal dev portfolio for Oak Cooper. Ground-up rebuild replacing a 2020-era
 Gatsby 2 site (`oak-wildwood/dev-portfolio`, still live at oakcooper.com until cutover).
 
@@ -44,8 +49,10 @@ Note: Next 16 is new enough that its APIs differ from model training data. Read
       Deliberately *after* scaffolding, but *before* any UI work.
 - [ ] **Phase 2 — React fundamentals (coach mode).** Server vs. Client Components;
       App Router file conventions; porting project content into typed objects.
-- [ ] **Phase 3 — Design build.** Impeccable drives. Portfolios are "Experience" mode:
-      let the work lead from the first viewport, the interface recedes.
+- [ ] **Phase 3 — Design build.** Impeccable drives. **Not** "work leads from the first
+      viewport" — that advice is for *designer* portfolios, where the work is the product.
+      Oak's argument is his professional record; the side projects are evidence for it.
+      Order: Hero (with every link) → About → Experience → Skills → Selected work → Contact.
 - [ ] **Phase 4 — Server features.** Contact form as a Server Action; dynamic OG images
       via `next/og`. Oak writes the Server Action — highest-value learning in the project.
 - [ ] **Phase 5 — Cutover.** Point oakcooper.com at Vercel, archive the Gatsby repo.
@@ -64,6 +71,37 @@ buries the concepts in noise. Simple markup first, then make it beautiful.
 
 ## Content status
 
-The four legacy projects (Lunch & Learn, withjoy.life, Storylines, Dev Portfolio) carry
-over from the old site as **placeholders**. They're dated and will be replaced. Design
-for the structure, not for this specific content.
+The four legacy projects (Lunch & Learn, withjoy.life, Storylines, Dev Portfolio) are
+**cut, not ported**. None of those sites are still hosted, and all that survives is a
+few low-res screenshots — showing them would contradict the design claim below.
+
+The replacement roster, and the design primitive it implies:
+
+| Project | Tier |
+|---|---|
+| Work Search Log — public repo, tests, a11y, genuinely finished | Polished |
+| Postmarked — postcard-tracking PWA, used daily; needs a design revamp first | Polished |
+| `cooperage` itself — public repo at launch, the code is the exhibit | In progress |
+| A prototype — none exist yet; tier may be empty at launch | Prototype |
+| Recipe site | Planned |
+
+**Design for the tiers, not the projects.** Two roster rows are still unnamed and the
+content will churn; the *maturity axis* (Polished · In progress · Prototype · Planned)
+is the stable structure. Showing project state honestly and at a glance is a candidate
+for the site's one signature move.
+
+## Design direction (Phase 0)
+
+- **Three-second claim: "meticulous."** Minimalist, but not empty.
+- **Surface: Editorial.** Cool off-black `#0E1018`; Space Grotesk headings, Newsreader
+  reading copy, JetBrains Mono labels. One accent — `#E8C98C`, the gold lifted from
+  Cairn's own `theme.ts` — rationed to the tier meter, one rule, the status dot, links.
+- **Audience is recruiters and hiring managers**, not designers. Claim first, evidence
+  after. Positioning is *design-centric frontend*; the .NET years are credibility
+  supporting that claim, never a co-headline.
+- **Signature move: the maturity axis** — Polished · In progress · Prototype · Planned,
+  carried by a four-step meter, never by varying typography.
+- **Oak's own nature photography** is in play, deliberately restrained — subdued
+  backdrop or texture rather than full-bleed hero, so it doesn't overpower the work.
+- Full sourcing method, references, and open tensions live in
+  `~/Vault/Projects/Portfolio Design Inspiration Sourcing 2026-08-23.md`.

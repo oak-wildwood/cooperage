@@ -47,3 +47,6 @@ next-env.d.ts
 /.claude/skills/
 /.claude/settings.local.json
 /.impeccable/
+
+# editor — personal, not shared
+/.vscode/

@@ -1,26 +1,74 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Design tokens. Surface is "Editorial": a cool off-black ground, one gold accent
+ * lifted from Cairn's own theme.ts, and three faces doing three jobs.
+ *
+ * The gold is rationed on purpose — the tier meter, one rule under the name, the
+ * availability dot, and links. If a fifth thing wants to be gold, something else
+ * has to give it up.
+ */
+@theme {
+  /* Ground — never pure black. */
+  --color-ink-900: #0A0C12; /* deepest: overlays, the cycling view */
+  --color-ink-800: #0E1018; /* page ground */
+  --color-ink-700: #14171F; /* raised bands */
+  --color-ink-600: #1B1F2B; /* wireframe blocks */
+
+  /* Rules and borders, dimmest to brightest. */
+  --color-line-900: #1B1F2B;
+  --color-line-800: #23283A;
+  --color-line-700: #333A52;
+  --color-line-600: #4A5170;
+
+  /* Text. */
+  --color-paper: #F1EEE7; /* primary */
+  --color-paper-dim: #C2C6D8; /* secondary */
+  --color-paper-mute: #9096A8; /* body copy */
+  --color-paper-faint: #6E7387; /* labels, metadata */
+  --color-paper-ghost: #4A5170; /* disabled, empty states */
+
+  /* The one accent. */
+  --color-gold: #E8C98C;
+  --color-gold-bright: #F6E7C4;
+  --color-gold-dim: #C9A96E;
+  --color-gold-line: #4A4232;
+
+  /* Faces. */
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-read: var(--font-newsreader), Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  /* One panel is slightly short of the viewport so a sliver of the next always
+     shows — the cue that the stack keeps going. */
+  --spacing-panel: 92dvh;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  background: var(--color-ink-800);
+  /* The stack reads better without the OS snapping mid-panel; scroll stays free. */
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink-800);
+  color: var(--color-paper);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Letterspaced small-caps labels appear on nearly every section; this is the
+   one repeated pattern worth a class rather than five utilities each time. */
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: var(--color-paper-faint);
 }
