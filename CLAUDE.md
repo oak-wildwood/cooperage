@@ -68,6 +68,9 @@ buries the concepts in noise. Simple markup first, then make it beautiful.
   stays focused on application code.
 - **Repo is private now, goes public at launch.** A public Next.js repo with readable
   code is itself a portfolio piece — plan accordingly and keep commits legible.
+- **PR and commit descriptions are matter-of-fact.** State what the change is and
+  what problem it solves, the way a human engineer's description would. Never
+  narrate the chat that produced it (no "Oak asked about X").
 
 ## Content status
 
