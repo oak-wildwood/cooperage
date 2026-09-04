@@ -93,7 +93,12 @@ export const SKILLS: SkillBand[] = [
     label: "AI-assisted engineering",
     note: "Set the team's approach",
     tone: "gold",
-    items: ["Claude Code", "Skill / plugin dev", "LLM review in CI", "AI guardrails"],
+    items: [
+      "Claude Code",
+      "Skill / plugin dev",
+      "LLM review in CI",
+      "AI guardrails",
+    ],
     caption:
       "Codified the conventions the tools follow, so speed never cost the team quality or consistency — and kept the judgment to know when to override them.",
   },

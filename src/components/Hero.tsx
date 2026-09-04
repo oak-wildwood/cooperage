@@ -13,7 +13,9 @@ export function Hero() {
     <section id="top" className="bg-ink-800">
       <div className="mx-auto grid max-w-[1600px] grid-cols-12 gap-6 px-12 pt-26 pb-24">
         <div className="col-span-12 lg:col-span-7">
-          <span className="label">01 &nbsp;/&nbsp; {PROFILE.title.toUpperCase()}</span>
+          <span className="label">
+            01 &nbsp;/&nbsp; {PROFILE.title.toUpperCase()}
+          </span>
 
           <h1 className="mt-6.5 text-[clamp(3.5rem,7.5vw,6.5rem)] font-medium leading-[0.9] tracking-[-0.05em]">
             Oak
@@ -65,7 +67,9 @@ export function Hero() {
                 <dt className="font-mono text-[11.5px] tracking-[0.15em] text-paper-faint">
                   {k.toUpperCase()}
                 </dt>
-                <dd className={`text-[15px] ${gold ? "text-gold" : "text-paper"}`}>
+                <dd
+                  className={`text-[15px] ${gold ? "text-gold" : "text-paper"}`}
+                >
                   {v}
                   {meta && <span className="text-paper-faint"> {meta}</span>}
                 </dd>

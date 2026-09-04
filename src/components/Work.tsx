@@ -22,8 +22,9 @@ export function Work() {
           Things I built and use.
         </h2>
         <p className="mt-7 max-w-[54ch] font-read text-[18px] font-light leading-relaxed text-paper-mute">
-          A few are finished. Some are not. Each one says which, because a portfolio
-          that only shows finished work is telling you less than it appears to.
+          A few are finished. Some are not. Each one says which, because a
+          portfolio that only shows finished work is telling you less than it
+          appears to.
         </p>
       </div>
 
