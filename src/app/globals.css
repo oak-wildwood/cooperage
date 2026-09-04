@@ -10,29 +10,29 @@
  */
 @theme {
   /* Ground — never pure black. */
-  --color-ink-900: #0A0C12; /* deepest: overlays, the cycling view */
-  --color-ink-800: #0E1018; /* page ground */
-  --color-ink-700: #14171F; /* raised bands */
-  --color-ink-600: #1B1F2B; /* wireframe blocks */
+  --color-ink-900: #0a0c12; /* deepest: overlays, the cycling view */
+  --color-ink-800: #0e1018; /* page ground */
+  --color-ink-700: #14171f; /* raised bands */
+  --color-ink-600: #1b1f2b; /* wireframe blocks */
 
   /* Rules and borders, dimmest to brightest. */
-  --color-line-900: #1B1F2B;
-  --color-line-800: #23283A;
-  --color-line-700: #333A52;
-  --color-line-600: #4A5170;
+  --color-line-900: #1b1f2b;
+  --color-line-800: #23283a;
+  --color-line-700: #333a52;
+  --color-line-600: #4a5170;
 
   /* Text. */
-  --color-paper: #F1EEE7; /* primary */
-  --color-paper-dim: #C2C6D8; /* secondary */
-  --color-paper-mute: #9096A8; /* body copy */
-  --color-paper-faint: #6E7387; /* labels, metadata */
-  --color-paper-ghost: #4A5170; /* disabled, empty states */
+  --color-paper: #f1eee7; /* primary */
+  --color-paper-dim: #c2c6d8; /* secondary */
+  --color-paper-mute: #9096a8; /* body copy */
+  --color-paper-faint: #6e7387; /* labels, metadata */
+  --color-paper-ghost: #4a5170; /* disabled, empty states */
 
   /* The one accent. */
-  --color-gold: #E8C98C;
-  --color-gold-bright: #F6E7C4;
-  --color-gold-dim: #C9A96E;
-  --color-gold-line: #4A4232;
+  --color-gold: #e8c98c;
+  --color-gold-bright: #f6e7c4;
+  --color-gold-dim: #c9a96e;
+  --color-gold-line: #4a4232;
 
   /* Faces. */
   --font-display: var(--font-space-grotesk), system-ui, sans-serif;

@@ -114,7 +114,9 @@ export function ProjectPanel({
                 {cover ? cover.caption.toUpperCase() : "—"}
               </span>
               <span className="font-mono text-[11px] tracking-[0.12em] text-paper-faint">
-                {project.screens.length > 0 ? `1 / ${project.screens.length}` : "0 / 0"}
+                {project.screens.length > 0
+                  ? `1 / ${project.screens.length}`
+                  : "0 / 0"}
               </span>
             </figcaption>
           </figure>

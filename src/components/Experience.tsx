@@ -22,7 +22,9 @@ export function Experience() {
             <article
               key={role.company}
               className={`grid grid-cols-12 gap-6 py-7 ${
-                i === 0 ? "border-t border-line-700" : "border-t border-line-800"
+                i === 0
+                  ? "border-t border-line-700"
+                  : "border-t border-line-800"
               }`}
             >
               <div className="col-span-12 sm:col-span-3">
@@ -51,7 +53,10 @@ export function Experience() {
                 </p>
                 <ul className="mt-4 flex flex-col gap-2.5">
                   {role.bullets.map((b) => (
-                    <li key={b} className="text-base leading-relaxed text-paper-mute">
+                    <li
+                      key={b}
+                      className="text-base leading-relaxed text-paper-mute"
+                    >
                       {b}
                     </li>
                   ))}

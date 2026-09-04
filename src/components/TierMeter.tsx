@@ -5,7 +5,13 @@ import { TIERS, type Tier } from "@/lib/projects";
  * dashed and dim. This — not the typography — is what tells you how finished
  * something is, so every project's type stays identical.
  */
-export function TierMeter({ tier, size = "lg" }: { tier: Tier; size?: "lg" | "sm" }) {
+export function TierMeter({
+  tier,
+  size = "lg",
+}: {
+  tier: Tier;
+  size?: "lg" | "sm";
+}) {
   const { label, note, steps } = TIERS[tier];
   const lit = tier === "polished";
   const small = size === "sm";
@@ -20,7 +26,9 @@ export function TierMeter({ tier, size = "lg" }: { tier: Tier; size?: "lg" | "sm
                 key={i}
                 className={small ? "h-[2.5px] w-[18px]" : "h-[3px] w-6"}
                 style={{
-                  background: lit ? "var(--color-gold)" : "var(--color-gold-dim)",
+                  background: lit
+                    ? "var(--color-gold)"
+                    : "var(--color-gold-dim)",
                   boxShadow: lit ? "0 0 7px rgba(232,201,140,.65)" : undefined,
                 }}
               />

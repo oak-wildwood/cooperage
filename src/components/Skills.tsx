@@ -1,6 +1,9 @@
 import { SKILLS, type SkillBand } from "@/lib/resume";
 
-const TONE: Record<SkillBand["tone"], { label: string; rule: string; tag: string }> = {
+const TONE: Record<
+  SkillBand["tone"],
+  { label: string; rule: string; tag: string }
+> = {
   deep: {
     label: "text-gold",
     rule: "bg-line-700",
@@ -37,8 +40,8 @@ export function Skills() {
           </h2>
           <div className="mt-5 h-0.5 w-11 bg-gold" />
           <p className="mt-5.5 max-w-[26ch] font-read text-[17px] font-light leading-relaxed text-paper-mute">
-            Grouped by how much I would want to be judged on them. Same honesty as the
-            projects.
+            Grouped by how much I would want to be judged on them. Same honesty
+            as the projects.
           </p>
         </div>
 

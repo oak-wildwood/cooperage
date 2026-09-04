@@ -8,7 +8,10 @@
 
 export type Tier = "polished" | "building" | "prototype" | "planned";
 
-export const TIERS: Record<Tier, { label: string; note: string; steps: number }> = {
+export const TIERS: Record<
+  Tier,
+  { label: string; note: string; steps: number }
+> = {
   polished: { label: "Polished", note: "Shipped. In use. Finished.", steps: 4 },
   building: { label: "In progress", note: "Real, and still moving.", steps: 3 },
   prototype: { label: "Prototype", note: "A sketch that runs.", steps: 2 },
