@@ -71,6 +71,9 @@ buries the concepts in noise. Simple markup first, then make it beautiful.
 - **PR and commit descriptions are matter-of-fact.** State what the change is and
   what problem it solves, the way a human engineer's description would. Never
   narrate the chat that produced it (no "Oak asked about X").
+- **PR titles follow Conventional Commits** (`type: summary`, e.g. `docs:`, `feat:`,
+  `fix:`, `chore:`) — squash-merges reuse the PR title as the commit message, so the
+  title is what ends up in history. Enforced by CI.
 
 ## Content status
 
