@@ -217,39 +217,18 @@ Netlify's standard apex IP — find where DNS is actually hosted before attempti
 
 ## PR previews
 
-The repo went public today, ahead of the Phase 5 cutover schedule — nothing in it
-depends on staying private (`.env*` is gitignored, `.env.example` only lists
-placeholder names, real secrets live in Vercel), and a public repo is itself part of
-the pitch (see CLAUDE.md's "Conventions"). Going public unblocks the plainer choice
-below, so no reason to wait for cutover.
+Connect this repo's Vercel project via Vercel's GitHub integration — separate from
+the Phase 5 domain cutover, and needs no workflow YAML. Every push registers a real
+GitHub Deployment (Environments tab on the PR, not a bot comment), and every branch
+gets a stable alias URL (`cooperage-git-<branch-slug>-<vercel-scope>.vercel.app`)
+that doesn't change across commits, unlike Vercel's default per-deployment URL.
+Rejected porting cairn's gh-pages-per-PR action: no real Deployment record, needs
+GitHub Pages (blocked on staying private), and breaks once Phase 4's Server Actions
+need a Node server. Repo is public now (moved up from the Phase 5 schedule) — nothing
+in it was private-only.
 
-**Decision: connect the Vercel project now, for previews only — not the domain
-cutover.** This is a separate step from Phase 5 above: it gets every PR a live
-preview, but `oakcooper.com` still doesn't point anywhere until cutover.
-
-Considered and rejected: reusing cairn's approach (build a static export, push it to
-a `gh-pages` branch via `rossjrw/pr-preview-action`, comment the link on the PR).
-Two problems. First, GitHub Pages isn't available on a private repo without
-GitHub Pro — moot now that the repo is public, but it was the original blocker.
-Second, and the real reason to drop it even after going public: that flow only ever
-posts a PR comment, it never registers as a real GitHub Deployment, so the PR never
-gets an Environments entry — exactly what felt thin about cairn's setup. Next.js
-also has Server Actions and a `next/og` route coming in Phase 4, both of which need
-a Node server; a static export would stop working the day that work lands, so
-building preview infra around one would have been throwaway.
-
-Vercel's own GitHub integration solves both problems natively, with zero workflow
-YAML: every push gets a Preview deployment registered as a real GitHub Deployment
-(shows under the PR's Environments tab, via the Deployments API, not just a bot
-comment), and every branch additionally gets a stable alias —
-`cooperage-git-<branch-slug>-<vercel-scope>.vercel.app` — that stays constant across
-every commit pushed to that branch, unlike the per-deployment hash URL. That's the
-part cairn's per-PR gh-pages subfolder got right and plain Vercel previews don't by
-default; the branch alias gets it back without leaving Vercel.
-
-**One-time manual step (needs Oak's own Vercel login, not something Claude can do):**
-import `oak-wildwood/cooperage` at vercel.com/new, accept the zero-config Next.js
-detection, deploy. Nothing else to configure — no `vercel.json` needed.
+**Manual step (needs Oak's own Vercel login):** import `oak-wildwood/cooperage` at
+vercel.com/new, accept zero-config detection, deploy.
 
 ---
 
