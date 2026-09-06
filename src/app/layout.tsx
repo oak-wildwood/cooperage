@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Newsreader, JetBrains_Mono } from "next/font/google";
+import { Menu } from "@/components/Menu";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -31,7 +32,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${spaceGrotesk.variable} ${newsreader.variable} ${jetbrainsMono.variable} h-full`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        <Menu />
+        {children}
+      </body>
     </html>
   );
 }
