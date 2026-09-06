@@ -3,28 +3,43 @@
 Working plan for the portfolio rebuild. Written to be picked up cold in a new session:
 everything decided so far, why, and what is left. Update it as things land.
 
-**Last updated:** 2026-09-04
+**Last updated:** 2026-09-06
 
 ---
+
+## Today's session queue
+
+Ordered, so a cold session (or a context clear mid-session) knows what's next:
+
+1. ✅ **Collapsing menu** — fixed and verified live (collapse + active-section
+   highlight, including the page-bottom edge case). See "Code, as built."
+2. **Workshop the About copy** — Claude's draft exists; refine it toward Oak's voice.
+3. **Screenshots + roster lock** — Oak shoots the screens, then decide together which
+   projects actually ship in v1 (roster in `CLAUDE.md` may shrink for launch).
+4. **Publish** — Vercel import, point oakcooper.com at it.
+5. **Retire the Gatsby repo** — archive `oak-wildwood/dev-portfolio` once cutover holds.
+
+The goal is shipping today, not sequencing every phase below in order — Phase 4
+(Server Action, OG images) is not in today's queue and can wait past launch.
 
 ## Where this stands
 
 Phase 0 (design brief) is **done**. Phase 3 (design build) is **in progress** —
-tokens, page shell, and the sticky stack are built and green. Two interactive pieces
-remain, and they are deliberately reserved as learning work (see "Coach mode").
+tokens, page shell, sticky stack, and the collapsing menu are built and green. The
+screenshot viewer is the one outstanding interactive piece.
 
 ```
 ✅ Phase 1  Scaffold
 ✅ Phase 0  Design brief — direction settled, mockups approved
-🔨 Phase 3  Design build — shell + stack done; menu + viewer outstanding
-⬜ Phase 2  React fundamentals — folded into Phase 3's two Client Components
+🔨 Phase 3  Design build — shell + stack + menu done; viewer outstanding
+⬜ Phase 2  React fundamentals — folded into Phase 3's Client Components
 ⬜ Phase 4  Server features — contact form as Server Action, next/og images
 ⬜ Phase 5  Cutover — oakcooper.com → Vercel, archive the Gatsby repo
 ```
 
 Phase 2 and 3 swapped order in practice: the React learning now happens inside the
-real design rather than before it, because the two Client Components are genuinely
-the clearest illustration of the server/client boundary.
+real design rather than before it, because the Client Components are genuinely the
+clearest illustration of the server/client boundary.
 
 ---
 
@@ -149,11 +164,26 @@ src/
     Work.tsx           stack wrapper — scopes sticky
     ProjectPanel.tsx   one panel; `sticky top-0 h-panel` is the effect
     TierMeter.tsx      the four-rule meter
+    Menu.tsx           the one "use client" island — collapsing top bar
+  hooks/
+    useCollapsedPastHero.ts   hero-visibility → collapsed boolean
+    useActiveSection.ts       scroll-driven active section id, plus the
+                              exported pure `computeActiveSection` — unit
+                              tested in useActiveSection.test.ts
 public/screens/        screenshots go here; see its README
 ```
 
-State: `next build` green, `tsc --noEmit` clean, `eslint` clean, `/` prerenders as
-`○ (Static)` — **zero client JavaScript so far**.
+State: `next build` green, `tsc --noEmit` clean, `eslint` clean, `/` still
+prerenders as `○ (Static)` even with `Menu.tsx` mounted — the Client Component
+boundary is small enough that it doesn't change the page's rendering strategy.
+
+Testing: Vitest + React Testing Library, per Next's own guide
+(`node_modules/next/dist/docs/01-app/02-guides/testing/vitest.md`). Config in
+`vitest.config.mts` (jsdom environment, native `resolve.tsconfigPaths` for the
+`@/*` alias — no separate plugin needed). `npm test` runs once, `npm run
+test:watch` for dev. `@types/node` bumped `^20` → `^24` to match the actual
+Node runtime and satisfy Vitest 5's peer requirement — a pre-existing
+staleness from scaffold time, not caused by adding tests.
 
 The throwaway `/spike/stack` route has been deleted; the real stack supersedes it.
 
@@ -175,20 +205,22 @@ Two or three per project. The first is the panel cover; the rest appear in the v
 > **Do not use Claude in Chrome to capture these.** Oak takes screenshots himself —
 > browser tooling is slow and token-heavy. Ask before using it for anything.
 
-### 2. The collapsing menu — Oak writes it, coached
+### 2. The collapsing menu — done
 
-A sticky top bar that collapses, with jump links to each section. Needs open/closed
-state and scroll position, so it is a **Client Component** (`"use client"`).
+`Menu.tsx` is a **Client Component** (`"use client"`): a sticky top bar that
+collapses past the hero and highlights the active section while scrolling. Both
+behaviors are scroll-driven state, resolved via a `scroll` listener rather than
+`IntersectionObserver` for the active-section case — the `work` section wraps the
+whole sticky panel stack, so its bounding box is many viewports tall, and a
+short final section (`contact`) immediately after it can leave the page with no
+scroll distance left for a threshold-line approach to ever reach it. Verified live
+against the running dev server, including the page-bottom edge case.
 
-This is the cleanest illustration of the server/client boundary: the page is static
-HTML, one small island is interactive. Explain the boundary first, Oak writes it,
-then review.
-
-### 3. The screenshot viewer — Oak writes it, coached
+### 3. The screenshot viewer
 
 Opens from "VIEW SCREENS" on a panel and cycles through that project's screens.
 Needs index state, keyboard navigation (arrows, Escape), and focus management.
-Same lesson, slightly harder. `ProjectPanel.tsx` has a `TODO(oak)` marking the seam.
+`ProjectPanel.tsx` has a `TODO(oak)` marking the seam.
 
 ### 4. Remaining content passes
 
@@ -217,16 +249,9 @@ Netlify's standard apex IP — find where DNS is actually hosted before attempti
 
 ## Coach mode — how to work on this
 
-From `CLAUDE.md`, and it still holds:
-
-- **CSS, layout, tooling, config: just do it.** Oak has fifteen-plus years of this
-  and learns nothing watching it get explained.
-- **React and Next concepts: explain first, let Oak write it, then review.** Server
-  vs. Client Components, Server Actions, data flow, caching. Do not silently
-  implement the parts he is here to learn — that is the whole point of the project.
-
-The two outstanding Client Components and the Phase 4 Server Action are **his to
-write**. Scaffold around them, mark the seam, explain the concept, then stop.
+Superseded 2026-09-06: Claude now implements Client Components and the Phase 4
+Server Action directly rather than scaffolding them for Oak to write. CSS, layout,
+tooling, and config were always fair game to just do.
 
 ---
 
