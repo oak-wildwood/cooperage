@@ -221,11 +221,8 @@ Connect this repo's Vercel project via Vercel's GitHub integration — separate 
 the Phase 5 domain cutover, and needs no workflow YAML. Every push registers a real
 GitHub Deployment (Environments tab on the PR, not a bot comment), and every branch
 gets a stable alias URL (`cooperage-git-<branch-slug>-<vercel-scope>.vercel.app`)
-that doesn't change across commits, unlike Vercel's default per-deployment URL.
-Rejected porting cairn's gh-pages-per-PR action: no real Deployment record, needs
-GitHub Pages (blocked on staying private), and breaks once Phase 4's Server Actions
-need a Node server. Repo is public now (moved up from the Phase 5 schedule) — nothing
-in it was private-only.
+that doesn't change across commits, unlike Vercel's default per-deployment URL. Repo
+is public now (moved up from the Phase 5 schedule) — nothing in it was private-only.
 
 **Manual step (needs Oak's own Vercel login):** import `oak-wildwood/cooperage` at
 vercel.com/new, accept zero-config detection, deploy.
