@@ -81,8 +81,14 @@ and asked for more color, so the Cairn gold came across.
 | Labels | JetBrains Mono, letterspaced small caps |
 
 **The gold is rationed.** It is allowed on: the tier meter, one rule under the name,
-the availability dot, and links. If a fifth thing wants gold, something else gives it
-up. This constraint is doing real work — it is why the page reads as restrained.
+the availability dot, links, and — added 2026-09-06 — the Skills section's
+AI-assisted-engineering band, the one skill category worth calling out as a real
+differentiator rather than raw years-of-depth. `Skills.tsx`'s "Deep" band had drifted
+into a sixth, unintentional gold spot (gold label text on plain chips, next to the
+AI band's dim-gold label on gold chips) with no clear reason — corrected to plain so
+the AI band is the section's sole accent. If a further thing wants gold, something
+else gives it up. This constraint is doing real work — it is why the page reads as
+restrained.
 
 ### The signature move — the maturity axis
 

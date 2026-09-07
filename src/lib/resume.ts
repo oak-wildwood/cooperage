@@ -112,7 +112,7 @@ export const SKILLS: SkillBand[] = [
       "Vite",
       "Datadog RUM",
       "Vitest / Cypress",
-      "Storybook",
+      "Storybook / Chromatic",
     ],
   },
   {
