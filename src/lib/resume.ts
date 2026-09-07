@@ -9,7 +9,7 @@ export const PROFILE = {
   resume: "/oak-cooper-resume-2026.pdf",
   available: true,
   claim:
-    "Twenty-five years of frontend. The last four on a ~300-component Vue application — co-leading its Vue 3 migration, rebuilding the deployment pipeline underneath it, and setting how the team used AI without letting speed cost quality.",
+    "Senior frontend engineer with an eye for the friction most people don't notice until it's gone. Most recently four years deep in a ~300-component Vue application — co-leading its Vue 3 migration, rebuilding the deployment pipeline underneath it, and setting how the team used AI without letting speed cost quality.",
 } as const;
 
 export type Role = {

@@ -224,15 +224,21 @@ Needs index state, keyboard navigation (arrows, Escape), and focus management.
 
 ### 4. Remaining content passes
 
-- About copy is **drafted by Claude**, not lifted from the resume. It is the one
-  section written rather than transcribed — read it aloud and rewrite in Oak's voice.
-- Decide whether to state "twenty-five years" at all. Accurate and signals depth,
-  but some readers act on it.
+- ✅ **About/Hero copy voice pass — done 2026-09-06.** Read aloud line by line;
+  reworked the Hero claim to drop the "twenty-five years" framing (softened to
+  the AI-guardrails/friction angle instead — resolves the open question below)
+  and fixed the About "sixteen years, full-stack .NET" line against the actual
+  resume (closer to a decade-plus, not exclusively .NET). Cross-checked against
+  `~/Documents/2026 Job Search/Oak Cooper Resume 2026.pdf` and the Vault's
+  `Job Search - LinkedIn and Strategy 2026-07-15.md`. UX/accessibility was
+  considered as a positioning angle and dropped — not backed by much tangible
+  resume evidence, so don't lean on it here.
 - Postmarked has no screenshots because it is mid-redesign. It slots into the
   **In progress** tier when ready.
 - Recipe Site is **Angular on purpose** — twelve years of production Angular and
   nothing public to point at. Filling the Prototype tier needs a night of design work.
-- `public/oak-cooper-resume-2026.pdf` is referenced but **not yet added**.
+- `public/oak-cooper-resume-2026.pdf` is referenced but **not yet added** — the
+  source file is at `~/Documents/2026 Job Search/Oak Cooper Resume 2026.pdf`.
 
 ### 5. Phase 4 — Server features
 
