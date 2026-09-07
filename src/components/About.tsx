@@ -20,17 +20,17 @@ export function About() {
             What I care about is the seam between design and engineering —
             design systems, component libraries, the shared vocabulary that
             stops a product drifting apart. Most of the last four years went
-            into a ~300-component Vue application: building features, co-leading
+            into that same Vue application: building features, co-leading
             its Vue&nbsp;3 migration, and rebuilding the deployment and
             observability infrastructure underneath it.
           </p>
 
           <p className="mt-5 max-w-[64ch] font-read text-[17px] font-light leading-[1.7] text-paper-mute">
-            Sixteen of those years were full-stack .NET, which is mostly why I
-            have opinions about the API my components have to consume. The work
-            I am proudest of is invisible: the form that survives a dropped
-            connection, the table that stays readable at 200% zoom, the test
-            suite that runs in half the time it used to.
+            Before that, over a decade of full-stack work — ASP.NET among it —
+            which is mostly why I have opinions about the API my components
+            have to consume. The work I am proudest of is invisible: the form
+            that survives a dropped connection, the table that stays readable
+            at 200% zoom, the test suite that runs in half the time it used to.
           </p>
         </div>
       </div>

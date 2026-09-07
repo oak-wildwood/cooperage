@@ -5,7 +5,7 @@ const TONE: Record<
   { label: string; rule: string; tag: string }
 > = {
   deep: {
-    label: "text-gold",
+    label: "text-paper-dim",
     rule: "bg-line-700",
     tag: "border border-line-600 text-paper",
   },
