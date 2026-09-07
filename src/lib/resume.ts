@@ -82,7 +82,7 @@ export const SKILLS: SkillBand[] = [
       "Vue 2 / 3",
       "Angular",
       "TypeScript",
-      "NgRx / Pinia",
+      "NgRx (Redux) / Pinia",
       "GraphQL",
       "CSS architecture",
       "Accessibility",
