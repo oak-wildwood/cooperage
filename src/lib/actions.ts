@@ -13,31 +13,32 @@ export async function sendContactMessage(
   _prevState: ContactFormState,
   formData: FormData,
 ): Promise<ContactFormState> {
-  // TODO(oak) 1. Read `name`, `email`, `message` off `formData` with
-  // `formData.get(...)`. Each comes back typed as `FormDataEntryValue | null`
-  // (string | File | null), not `string` — narrow/cast before using them.
+  const name = formData.get("name") as string | null;
+  const email = formData.get("email") as string | null;
+  const message = formData.get("message") as string | null;
 
-  // TODO(oak) 2. Validate. The form's `required`/`type="email"` attributes
-  // are a UX nicety, not a security boundary: this function is a POST
-  // endpoint anyone can hit directly, with or without the form in front of
-  // it. Re-check non-empty name/message and a plausible email shape here.
-  // On failure, return `{ status: "error", message: "..." }` — don't throw,
-  // since a thrown error renders the framework's generic error UI instead of
-  // the inline message this form is built to show.
+  if (!name || !email || !message) {
+    return { status: "error", message: "All fields are required." };
+  }
 
-  // TODO(oak) 3. Send the email: `await resend.emails.send({ ... })`.
-  //   - `from`: must be a sender/domain verified in your Resend account —
-  //     their sandbox domain works for testing before you verify one.
-  //   - `to`: CONTACT_TO_EMAIL from env (see .env.example) — where you want
-  //     this to land.
-  //   - `replyTo`: the visitor's submitted address, so replying in your
-  //     inbox goes straight to them instead of to Resend's sending address.
-  //   - Wrap the call in try/catch. Resend can reject the request (bad key,
-  //     unverified domain, rate limit) and that should become a friendly
-  //     error state, not an unhandled rejection.
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return { status: "error", message: "Please enter a valid email address." };
+  }
 
-  // TODO(oak) 4. Return `{ status: "success", message: "..." }` once the
-  // send call resolves.
+  try {
+    const { error } = await resend.emails.send({
+      from: "Oak Cooper <contact@send.oakcooper.com>",
+      to: process.env.CONTACT_TO_EMAIL!,
+      replyTo: email,
+      subject: `New message from ${name}`,
+      text: `From: ${name} <${email}>\n\n${message}`,
+    });
 
-  return { status: "error", message: "Not implemented yet." };
+    if (error) throw error;
+
+    return { status: "success", message: "Message sent successfully." };
+  } catch (error) {
+    console.error("Failed to send contact message:", error);
+    return { status: "error", message: "Failed to send message." };
+  }
 }

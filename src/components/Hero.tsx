@@ -55,7 +55,12 @@ export function Hero() {
             {PROFILE.claim}
           </p>
 
-          {/* Every link a recruiter needs, before any scrolling happens. */}
+          {/* External links a recruiter needs before any scrolling happens.
+              No mailto here — it's a scraper target; the contact form (linked
+              from the persistent nav) is the way to reach out instead. Note
+              the resume PDF still lists an email/phone, which is intentional
+              since a contactless resume is unusual — not something this
+              change was meant to close off. */}
           <div className="mt-11 flex flex-wrap gap-2.5">
             <a
               href="#work"
@@ -71,7 +76,6 @@ export function Hero() {
                 label: "RESUME ↓",
                 download: "Oak-Cooper-Resume-2026.pdf",
               },
-              { href: `mailto:${PROFILE.email}`, label: "EMAIL" },
             ].map(({ href, label, download }) => (
               <a
                 key={label}

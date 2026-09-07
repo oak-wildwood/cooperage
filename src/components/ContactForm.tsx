@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { sendContactMessage, type ContactFormState } from "@/lib/actions";
 
 const initialState: ContactFormState = { status: "idle", message: "" };
@@ -8,11 +8,32 @@ const initialState: ContactFormState = { status: "idle", message: "" };
 const fieldClass =
   "w-full border border-line-700 bg-transparent px-4 py-3 font-mono text-sm text-paper outline-none transition-colors placeholder:text-paper-ghost focus:border-gold";
 
-export function ContactForm() {
+function ContactFormFields({ onSent }: { onSent: () => void }) {
   const [state, formAction, pending] = useActionState(
     sendContactMessage,
     initialState,
   );
+
+  if (state.status === "success") {
+    return (
+      <div className="mt-11 max-w-[46ch] space-y-5">
+        <p
+          role="status"
+          aria-live="polite"
+          className="font-mono text-sm tracking-[0.02em] text-gold"
+        >
+          {state.message}
+        </p>
+        <button
+          type="button"
+          onClick={onSent}
+          className="inline-flex h-11.5 items-center border border-line-700 px-5.5 font-mono text-xs font-semibold tracking-[0.13em] text-paper transition-colors hover:border-line-600 hover:text-gold"
+        >
+          SEND ANOTHER MESSAGE
+        </button>
+      </div>
+    );
+  }
 
   return (
     <form action={formAction} className="mt-11 max-w-[46ch] space-y-5">
@@ -58,19 +79,31 @@ export function ContactForm() {
           {pending ? "SENDING…" : "SEND MESSAGE"}
         </button>
 
-        {state.status !== "idle" && (
+        {state.status === "error" && (
           <p
             role="status"
             aria-live="polite"
-            className={`font-mono text-[11.5px] tracking-[0.1em] ${
-              state.status === "success" ? "text-gold" : "text-paper-dim"
-            }`}
+            className="font-mono text-[11.5px] tracking-[0.1em] text-paper-dim"
           >
-            {state.status === "error" ? "ERROR — " : ""}
-            {state.message}
+            ERROR — {state.message}
           </p>
         )}
       </div>
     </form>
+  );
+}
+
+export function ContactForm() {
+  // useActionState has no reset API, so the only clean way back to a blank
+  // form after a successful submission is a remount: bumping this key
+  // re-runs useActionState from scratch inside ContactFormFields, which
+  // resets its state to `initialState` with nothing left to keep in sync.
+  const [formInstance, setFormInstance] = useState(0);
+
+  return (
+    <ContactFormFields
+      key={formInstance}
+      onSent={() => setFormInstance((n) => n + 1)}
+    />
   );
 }
