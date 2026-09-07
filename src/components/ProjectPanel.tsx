@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { coverFrameHeightClassName, ScreenshotFrame } from "./ScreenshotFrame";
+import { ScreenshotViewer } from "./ScreenshotViewer";
 import { TierMeter } from "./TierMeter";
 import type { Project } from "@/lib/projects";
 
@@ -69,23 +71,17 @@ export function ProjectPanel({
           </ul>
 
           <div className="mt-9 flex items-center gap-6">
-            {/*
-              TODO(oak): this button opens the screenshot viewer — a Client Component,
-              since it needs index state and keyboard handling. Static for now.
-            */}
             {project.screens.length > 0 ? (
-              <span className="border-b border-gold pb-1 font-mono text-xs font-semibold tracking-[0.16em] text-gold">
-                VIEW SCREENS &nbsp;→
-              </span>
+              <ScreenshotViewer project={project} />
             ) : (
-              <span className="font-mono text-xs font-semibold tracking-[0.16em] text-paper-ghost">
+              <span className="action-label text-paper-ghost">
                 NO SCREENS YET
               </span>
             )}
             {project.repo && (
               <a
                 href={project.repo}
-                className="font-mono text-xs font-semibold tracking-[0.16em] text-paper-faint transition-colors hover:text-paper"
+                className="action-label text-paper-faint transition-colors hover:text-paper"
               >
                 SOURCE &nbsp;↗
               </a>
@@ -96,16 +92,22 @@ export function ProjectPanel({
         <div className="col-span-12 hidden justify-end lg:col-span-7 lg:flex">
           <figure className="w-full max-w-[620px]">
             {cover ? (
-              <Image
-                src={cover.src}
-                alt={cover.alt}
-                width={cover.width}
-                height={cover.height}
-                className="block w-full border border-line-700"
-                priority={index === 0}
-              />
+              <ScreenshotViewer project={project}>
+                <ScreenshotFrame size="cover" className="group cursor-zoom-in">
+                  <Image
+                    src={cover.src}
+                    alt={cover.alt}
+                    width={cover.width}
+                    height={cover.height}
+                    className="max-h-full max-w-full object-contain transition-opacity group-hover:opacity-90"
+                    priority={index === 0}
+                  />
+                </ScreenshotFrame>
+              </ScreenshotViewer>
             ) : (
-              <div className="flex h-[400px] w-full items-center justify-center border-[1.5px] border-dashed border-line-700 bg-white/[0.012]">
+              <div
+                className={`flex w-full items-center justify-center border-[1.5px] border-dashed border-line-700 bg-white/[0.012] ${coverFrameHeightClassName}`}
+              >
                 <span className="label text-paper-ghost">AWAITING SCREENS</span>
               </div>
             )}
@@ -113,7 +115,7 @@ export function ProjectPanel({
               <span className="label tracking-[0.18em]">
                 {cover ? cover.caption.toUpperCase() : "—"}
               </span>
-              <span className="font-mono text-[11px] tracking-[0.12em] text-paper-faint">
+              <span className="label text-[11px] tracking-[0.12em]">
                 {project.screens.length > 0
                   ? `1 / ${project.screens.length}`
                   : "0 / 0"}

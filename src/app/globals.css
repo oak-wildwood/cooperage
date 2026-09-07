@@ -73,3 +73,15 @@ body {
   letter-spacing: 0.25em;
   color: var(--color-paper-faint);
 }
+
+/* The small-caps CTA text on trigger/link/empty-state elements (VIEW SCREENS,
+   SOURCE, CLOSE, NO SCREENS YET) — same idea as `label` but tighter tracking
+   and no baked-in color, since color is what varies (gold, faint, ghost) per
+   element's state. */
+@utility action-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
