@@ -80,8 +80,8 @@ export const SKILLS: SkillBand[] = [
     tone: "deep",
     items: [
       "Vue 2 / 3",
-      "TypeScript",
       "Angular",
+      "TypeScript",
       "NgRx / Pinia",
       "GraphQL",
       "CSS architecture",
