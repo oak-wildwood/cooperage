@@ -17,6 +17,29 @@ export function Hero() {
             01 &nbsp;/&nbsp; {PROFILE.title.toUpperCase()}
           </span>
 
+          {/*
+            TODO(oak): drop in a real headshot at /profile-pic.jpg and uncomment.
+            profile-pic.jpg was a dated, low-quality webcam selfie and got pulled
+            for image quality, not the approach — re-add `import Image from
+            "next/image"` at the top of this file when restoring this block.
+            The 1.8 in the height/width calc is the h1's leading-[0.9] × its 2
+            lines, so the avatar's diameter tracks the heading's clamp() at
+            every viewport width.
+
+          <div className="mt-6.5 flex items-center gap-6">
+            <div className="relative h-[calc(clamp(3.5rem,7.5vw,6.5rem)*1.8)] w-[calc(clamp(3.5rem,7.5vw,6.5rem)*1.8)] shrink-0 overflow-hidden rounded-full border border-line-700">
+              <Image
+                src="/profile-pic.jpg"
+                alt="Portrait of Oak Cooper"
+                fill
+                sizes="192px"
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
+          */}
+
           <h1 className="mt-6.5 text-[clamp(3.5rem,7.5vw,6.5rem)] font-medium leading-[0.9] tracking-[-0.05em]">
             Oak
             <br />
@@ -41,8 +64,8 @@ export function Hero() {
               VIEW WORK
             </a>
             {[
-              { href: PROFILE.github, label: "GITHUB" },
-              { href: PROFILE.linkedin, label: "LINKEDIN" },
+              { href: PROFILE.github, label: "GITHUB ↗" },
+              { href: PROFILE.linkedin, label: "LINKEDIN ↗" },
               { href: PROFILE.resume, label: "RESUME ↓" },
               { href: `mailto:${PROFILE.email}`, label: "EMAIL" },
             ].map(({ href, label }) => (
