@@ -5,8 +5,9 @@
  * lifted from Cairn's own theme.ts, and three faces doing three jobs.
  *
  * The gold is rationed on purpose — the tier meter, one rule under the name, the
- * availability dot, and links. If a fifth thing wants to be gold, something else
- * has to give it up.
+ * availability dot, links, and the Skills section's AI-assisted-engineering band
+ * (the one differentiator worth calling out there). If a sixth thing wants to be
+ * gold, something else has to give it up.
  */
 @theme {
   /* Ground — never pure black. */

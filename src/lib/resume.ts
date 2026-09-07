@@ -9,7 +9,7 @@ export const PROFILE = {
   resume: "/oak-cooper-resume-2026.pdf",
   available: true,
   claim:
-    "Twenty-five years of frontend. The last four on a ~300-component Vue application — co-leading its Vue 3 migration, rebuilding the deployment pipeline underneath it, and setting how the team used AI without letting speed cost quality.",
+    "Senior frontend engineer with an eye for the friction most people don't notice until it's gone. Most recently four years deep in a ~300-component Vue application — co-leading its Vue 3 migration, rebuilding the deployment pipeline underneath it, and setting how the team used AI without letting speed cost quality.",
 } as const;
 
 export type Role = {
@@ -80,9 +80,10 @@ export const SKILLS: SkillBand[] = [
     tone: "deep",
     items: [
       "Vue 2 / 3",
-      "TypeScript",
       "Angular",
-      "NgRx / Pinia",
+      "TypeScript",
+      "NgRx (Redux)",
+      "Pinia",
       "GraphQL",
       "CSS architecture",
       "Accessibility",
@@ -106,13 +107,14 @@ export const SKILLS: SkillBand[] = [
     label: "Platform",
     tone: "plain",
     items: [
-      "Jenkins",
+      "Jenkins / Vercel",
       "AWS",
       "Docker",
       "Vite",
       "Datadog RUM",
-      "Vitest / Cypress",
-      "Storybook",
+      "Vitest / Jest",
+      "Playwright / Cypress",
+      "Storybook / Chromatic",
     ],
   },
   {
