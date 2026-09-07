@@ -1,4 +1,5 @@
 import { PROFILE } from "@/lib/resume";
+import { ContactForm } from "@/components/ContactForm";
 
 export function Contact() {
   return (
@@ -52,6 +53,8 @@ export function Contact() {
             </a>
           ))}
         </div>
+
+        <ContactForm />
 
         <p className="mt-16 font-mono text-[11px] tracking-[0.12em] text-paper-ghost">
           BUILT WITH NEXT 16 AND REACT SERVER COMPONENTS. SOURCE ON GITHUB.
