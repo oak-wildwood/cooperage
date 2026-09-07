@@ -23,6 +23,14 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      # Node must be on the runner, with npm's cache warmed from
+      # package-lock.json, before Claude can usefully run npm install,
+      # npm run test, or npm run build itself.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
       - name: Determine model from trigger text
         id: model
         env:
@@ -41,6 +49,9 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           # Mention "haiku" or "opus" in the triggering comment to override
-          # the claude-sonnet-5 default set above.
+          # the claude-sonnet-5 default set above. --allowedTools ADDS to
+          # (not replaces) the action's base tool set, granting the scripts
+          # Claude needs to install deps and verify its own changes.
           claude_args: |
             --model ${{ steps.model.outputs.model }}
+            --allowedTools "Bash(npm install:*),Bash(npm ci:*),Bash(npm run test:*),Bash(npm run build:*),Bash(npm run lint:*)"
