@@ -5,7 +5,15 @@ import type { ReactNode } from "react";
  * adding a third consumer doesn't mean inventing another magic number. */
 const SIZES = {
   cover: "h-[46dvh] max-h-[460px]",
-  overlay: "h-[70vh] max-h-[760px]",
+  // Below `sm` the frame sizes to whatever the current screen actually
+  // renders at (capped for safety) instead of reserving a fixed 70vh —
+  // most of these screenshots are landscape desktop app UI, and a fixed
+  // portrait-viewport-height box around one leaves most of the box empty.
+  // `sm` and up keeps the original fixed box: at that width the frame
+  // rarely spans the full viewport height anyway, so there's no dead space
+  // to reclaim, and a fixed size means screens don't jump around while
+  // cycling through a project's shots.
+  overlay: "max-h-[60vh] sm:h-[70vh] sm:max-h-[760px]",
 } as const;
 
 export type ScreenshotFrameSize = keyof typeof SIZES;

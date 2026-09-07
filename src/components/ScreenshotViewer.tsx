@@ -10,6 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import type { Project } from "@/lib/projects";
+import { useEscapeToClose } from "@/hooks/useEscapeToClose";
 import { ScreenshotFrame } from "./ScreenshotFrame";
 
 /**
@@ -50,6 +51,8 @@ export function ScreenshotViewer({
     };
   }, [isOpen]);
 
+  useEscapeToClose(isOpen, () => setIsOpen(false));
+
   const screen = screens[index];
 
   function goPrev() {
@@ -78,9 +81,6 @@ export function ScreenshotViewer({
 
   function onKeyDown(event: KeyboardEvent<HTMLDivElement>) {
     switch (event.key) {
-      case "Escape":
-        setIsOpen(false);
-        break;
       case "ArrowLeft":
         goPrev();
         break;
@@ -122,7 +122,7 @@ export function ScreenshotViewer({
 
       {isOpen && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-ink-900/90 p-8"
+          className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-ink-900/90 p-4 sm:p-8"
           onClick={() => setIsOpen(false)}
         >
           <div
@@ -133,9 +133,9 @@ export function ScreenshotViewer({
             tabIndex={-1}
             onKeyDown={onKeyDown}
             onClick={(event) => event.stopPropagation()}
-            className="relative flex w-full max-w-6xl flex-col border border-line-700 bg-ink-800 p-6"
+            className="relative flex w-full max-w-6xl flex-col border border-line-700 bg-ink-800 p-4 sm:p-6"
           >
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-3">
               <h2 id={titleId} className="label">
                 {name.toUpperCase()} &nbsp;/&nbsp; SCREENS
               </h2>
@@ -143,13 +143,13 @@ export function ScreenshotViewer({
                 type="button"
                 onClick={() => setIsOpen(false)}
                 aria-label="Close screenshot viewer"
-                className="action-label text-paper-faint transition-colors hover:text-paper"
+                className="action-label shrink-0 whitespace-nowrap text-paper-faint transition-colors hover:text-paper"
               >
                 CLOSE ✕
               </button>
             </div>
 
-            <div className="mt-6 flex items-center gap-4">
+            <div className="mt-4 flex items-center gap-1.5 sm:mt-6 sm:gap-4">
               <NavButton
                 onClick={goPrev}
                 disabled={screens.length < 2}
@@ -176,11 +176,11 @@ export function ScreenshotViewer({
               />
             </div>
 
-            <div className="mt-4 flex items-center justify-between">
+            <div className="mt-4 flex items-start justify-between gap-3">
               <span className="label tracking-[0.18em]">
                 {screen.caption.toUpperCase()}
               </span>
-              <span className="label text-[11px] tracking-[0.12em]">
+              <span className="label shrink-0 whitespace-nowrap text-[11px] tracking-[0.12em]">
                 {index + 1} / {screens.length}
               </span>
             </div>
@@ -208,7 +208,7 @@ function NavButton({
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      className="font-mono text-lg text-paper-dim transition-colors hover:text-gold disabled:pointer-events-none disabled:opacity-30"
+      className="flex h-11 w-8 shrink-0 items-center justify-center font-mono text-lg text-paper-dim transition-colors hover:text-gold disabled:pointer-events-none disabled:opacity-30 sm:h-auto sm:w-auto"
     >
       {glyph}
     </button>
