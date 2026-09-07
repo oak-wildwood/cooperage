@@ -232,7 +232,8 @@ Needs index state, keyboard navigation (arrows, Escape), and focus management.
   **In progress** tier when ready.
 - Recipe Site is **Angular on purpose** — twelve years of production Angular and
   nothing public to point at. Filling the Prototype tier needs a night of design work.
-- `public/oak-cooper-resume-2026.pdf` is referenced but **not yet added**.
+- ✅ `public/oak-cooper-resume-2026.pdf` added; the Hero's resume link now has a
+  `download` attribute so it saves instead of opening inline in the browser.
 
 ### 5. Phase 4 — Server features
 
