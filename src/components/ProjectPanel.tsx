@@ -74,14 +74,14 @@ export function ProjectPanel({
             {project.screens.length > 0 ? (
               <ScreenshotViewer project={project} />
             ) : (
-              <span className="font-mono text-xs font-semibold tracking-[0.16em] text-paper-ghost">
+              <span className="action-label text-paper-ghost">
                 NO SCREENS YET
               </span>
             )}
             {project.repo && (
               <a
                 href={project.repo}
-                className="font-mono text-xs font-semibold tracking-[0.16em] text-paper-faint transition-colors hover:text-paper"
+                className="action-label text-paper-faint transition-colors hover:text-paper"
               >
                 SOURCE &nbsp;↗
               </a>

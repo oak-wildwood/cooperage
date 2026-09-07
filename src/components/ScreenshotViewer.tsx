@@ -101,8 +101,7 @@ export function ScreenshotViewer({
       }
     : {
         label: undefined,
-        className:
-          "border-b border-gold pb-1 font-mono text-xs font-semibold tracking-[0.16em] text-gold",
+        className: "action-label border-b border-gold pb-1 text-gold",
         content: <>VIEW SCREENS &nbsp;→</>,
       };
 
@@ -144,7 +143,7 @@ export function ScreenshotViewer({
                 type="button"
                 onClick={() => setIsOpen(false)}
                 aria-label="Close screenshot viewer"
-                className="font-mono text-xs font-semibold tracking-[0.16em] text-paper-faint transition-colors hover:text-paper"
+                className="action-label text-paper-faint transition-colors hover:text-paper"
               >
                 CLOSE ✕
               </button>
