@@ -247,6 +247,20 @@ Netlify's standard apex IP — find where DNS is actually hosted before attempti
 
 ---
 
+## PR previews
+
+Connect this repo's Vercel project via Vercel's GitHub integration — separate from
+the Phase 5 domain cutover, and needs no workflow YAML. Every push registers a real
+GitHub Deployment (Environments tab on the PR, not a bot comment), and every branch
+gets a stable alias URL (`cooperage-git-<branch-slug>-<vercel-scope>.vercel.app`)
+that doesn't change across commits, unlike Vercel's default per-deployment URL. Repo
+is public now (moved up from the Phase 5 schedule) — nothing in it was private-only.
+
+**Manual step (needs Oak's own Vercel login):** import `oak-wildwood/cooperage` at
+vercel.com/new, accept zero-config detection, deploy.
+
+---
+
 ## Coach mode — how to work on this
 
 Superseded 2026-09-06: Claude now implements Client Components and the Phase 4
