@@ -149,7 +149,7 @@ export const PROJECTS: Project[] = [
     tier: "planned",
     year: "—",
     blurb:
-      "A place for the recipes that already work. Angular on purpose: twelve years of it in production and nothing public to point at.",
+      "A place for the recipes that already work. Angular on purpose: eight years of it in production (2014–2022) and nothing public to point at.",
     stack: ["Angular", "TypeScript", "Signals"],
     screens: [],
   },
