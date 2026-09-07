@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ScreenshotFrame } from "./ScreenshotFrame";
 import { ScreenshotViewer } from "./ScreenshotViewer";
 import { TierMeter } from "./TierMeter";
 import type { Project } from "@/lib/projects";
@@ -92,7 +93,10 @@ export function ProjectPanel({
           <figure className="w-full max-w-[620px]">
             {cover ? (
               <ScreenshotViewer project={project}>
-                <div className="group flex h-[46dvh] max-h-[460px] w-full cursor-zoom-in items-center justify-center overflow-hidden border border-line-700 bg-ink-900">
+                <ScreenshotFrame
+                  heightClassName="h-[46dvh] max-h-[460px]"
+                  className="group cursor-zoom-in"
+                >
                   <Image
                     src={cover.src}
                     alt={cover.alt}
@@ -101,7 +105,7 @@ export function ProjectPanel({
                     className="max-h-full max-w-full object-contain transition-opacity group-hover:opacity-90"
                     priority={index === 0}
                   />
-                </div>
+                </ScreenshotFrame>
               </ScreenshotViewer>
             ) : (
               <div className="flex h-[400px] w-full items-center justify-center border-[1.5px] border-dashed border-line-700 bg-white/[0.012]">

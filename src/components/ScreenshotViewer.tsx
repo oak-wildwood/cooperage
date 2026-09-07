@@ -10,6 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import type { Project } from "@/lib/projects";
+import { ScreenshotFrame } from "./ScreenshotFrame";
 
 /**
  * Trigger + overlay for cycling through a project's screens. Self-contained,
@@ -92,6 +93,19 @@ export function ScreenshotViewer({
     }
   }
 
+  const trigger = children
+    ? {
+        label: `View all screens for ${name}`,
+        className: "block w-full text-left",
+        content: children,
+      }
+    : {
+        label: undefined,
+        className:
+          "border-b border-gold pb-1 font-mono text-xs font-semibold tracking-[0.16em] text-gold",
+        content: <>VIEW SCREENS &nbsp;→</>,
+      };
+
   return (
     <>
       <button
@@ -101,14 +115,10 @@ export function ScreenshotViewer({
           setIndex(0);
           setIsOpen(true);
         }}
-        aria-label={children ? `View all screens for ${name}` : undefined}
-        className={
-          children
-            ? "block w-full text-left"
-            : "border-b border-gold pb-1 font-mono text-xs font-semibold tracking-[0.16em] text-gold"
-        }
+        aria-label={trigger.label}
+        className={trigger.className}
       >
-        {children ?? <>VIEW SCREENS &nbsp;→</>}
+        {trigger.content}
       </button>
 
       {isOpen && (
@@ -151,7 +161,10 @@ export function ScreenshotViewer({
                 ←
               </button>
 
-              <div className="flex h-[70vh] max-h-[760px] flex-1 items-center justify-center overflow-hidden border border-line-700 bg-ink-900">
+              <ScreenshotFrame
+                heightClassName="h-[70vh] max-h-[760px]"
+                className="flex-1"
+              >
                 <Image
                   key={screen.src}
                   src={screen.src}
@@ -160,7 +173,7 @@ export function ScreenshotViewer({
                   height={screen.height}
                   className="max-h-full max-w-full object-contain"
                 />
-              </div>
+              </ScreenshotFrame>
 
               <button
                 type="button"
