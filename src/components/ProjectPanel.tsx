@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ScreenshotViewer } from "./ScreenshotViewer";
 import { TierMeter } from "./TierMeter";
 import type { Project } from "@/lib/projects";
 
@@ -69,14 +70,8 @@ export function ProjectPanel({
           </ul>
 
           <div className="mt-9 flex items-center gap-6">
-            {/*
-              TODO(oak): this button opens the screenshot viewer — a Client Component,
-              since it needs index state and keyboard handling. Static for now.
-            */}
             {project.screens.length > 0 ? (
-              <span className="border-b border-gold pb-1 font-mono text-xs font-semibold tracking-[0.16em] text-gold">
-                VIEW SCREENS &nbsp;→
-              </span>
+              <ScreenshotViewer project={project} />
             ) : (
               <span className="font-mono text-xs font-semibold tracking-[0.16em] text-paper-ghost">
                 NO SCREENS YET
