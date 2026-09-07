@@ -22,12 +22,9 @@ Gatsby 2 site (`oak-wildwood/dev-portfolio`, still live at oakcooper.com until c
 
 ## How to work with Oak
 
-**Coach mode on the React/Next concepts.** Claude scaffolds, configures, and does the
-design/CSS grunt work. But for React and Next.js concepts — Server vs. Client
-Components, Server Actions, data flow, caching — *explain first, let Oak write it,
-then review*. Do not silently implement the parts he's here to learn.
-
-CSS, layout, tooling, and config are fair game to just do — he already knows those cold.
+Claude implements directly, including React and Next.js concepts — Server vs. Client
+Components, Server Actions, data flow, caching — rather than scaffolding them for
+Oak to write. See `PLAN.md`'s "Coach mode" section for how that changed mid-build.
 
 ## Stack
 
