@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ScreenshotFrame } from "./ScreenshotFrame";
+import { coverFrameHeightClassName, ScreenshotFrame } from "./ScreenshotFrame";
 import { ScreenshotViewer } from "./ScreenshotViewer";
 import { TierMeter } from "./TierMeter";
 import type { Project } from "@/lib/projects";
@@ -93,10 +93,7 @@ export function ProjectPanel({
           <figure className="w-full max-w-[620px]">
             {cover ? (
               <ScreenshotViewer project={project}>
-                <ScreenshotFrame
-                  heightClassName="h-[46dvh] max-h-[460px]"
-                  className="group cursor-zoom-in"
-                >
+                <ScreenshotFrame size="cover" className="group cursor-zoom-in">
                   <Image
                     src={cover.src}
                     alt={cover.alt}
@@ -108,7 +105,9 @@ export function ProjectPanel({
                 </ScreenshotFrame>
               </ScreenshotViewer>
             ) : (
-              <div className="flex h-[400px] w-full items-center justify-center border-[1.5px] border-dashed border-line-700 bg-white/[0.012]">
+              <div
+                className={`flex w-full items-center justify-center border-[1.5px] border-dashed border-line-700 bg-white/[0.012] ${coverFrameHeightClassName}`}
+              >
                 <span className="label text-paper-ghost">AWAITING SCREENS</span>
               </div>
             )}
@@ -116,7 +115,7 @@ export function ProjectPanel({
               <span className="label tracking-[0.18em]">
                 {cover ? cover.caption.toUpperCase() : "—"}
               </span>
-              <span className="font-mono text-[11px] tracking-[0.12em] text-paper-faint">
+              <span className="label text-[11px] tracking-[0.12em]">
                 {project.screens.length > 0
                   ? `1 / ${project.screens.length}`
                   : "0 / 0"}

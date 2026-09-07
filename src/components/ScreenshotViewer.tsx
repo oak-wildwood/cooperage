@@ -151,20 +151,14 @@ export function ScreenshotViewer({
             </div>
 
             <div className="mt-6 flex items-center gap-4">
-              <button
-                type="button"
+              <NavButton
                 onClick={goPrev}
                 disabled={screens.length < 2}
-                aria-label="Previous screenshot"
-                className="font-mono text-lg text-paper-dim transition-colors hover:text-gold disabled:pointer-events-none disabled:opacity-30"
-              >
-                ←
-              </button>
+                label="Previous screenshot"
+                glyph="←"
+              />
 
-              <ScreenshotFrame
-                heightClassName="h-[70vh] max-h-[760px]"
-                className="flex-1"
-              >
+              <ScreenshotFrame size="overlay" className="flex-1">
                 <Image
                   key={screen.src}
                   src={screen.src}
@@ -175,22 +169,19 @@ export function ScreenshotViewer({
                 />
               </ScreenshotFrame>
 
-              <button
-                type="button"
+              <NavButton
                 onClick={goNext}
                 disabled={screens.length < 2}
-                aria-label="Next screenshot"
-                className="font-mono text-lg text-paper-dim transition-colors hover:text-gold disabled:pointer-events-none disabled:opacity-30"
-              >
-                →
-              </button>
+                label="Next screenshot"
+                glyph="→"
+              />
             </div>
 
             <div className="mt-4 flex items-center justify-between">
               <span className="label tracking-[0.18em]">
                 {screen.caption.toUpperCase()}
               </span>
-              <span className="font-mono text-[11px] tracking-[0.12em] text-paper-faint">
+              <span className="label text-[11px] tracking-[0.12em]">
                 {index + 1} / {screens.length}
               </span>
             </div>
@@ -198,5 +189,29 @@ export function ScreenshotViewer({
         </div>
       )}
     </>
+  );
+}
+
+function NavButton({
+  onClick,
+  disabled,
+  label,
+  glyph,
+}: {
+  onClick: () => void;
+  disabled: boolean;
+  label: string;
+  glyph: string;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={label}
+      className="font-mono text-lg text-paper-dim transition-colors hover:text-gold disabled:pointer-events-none disabled:opacity-30"
+    >
+      {glyph}
+    </button>
   );
 }
