@@ -1,4 +1,5 @@
 import { PROFILE } from "@/lib/resume";
+import { ContactForm } from "@/components/ContactForm";
 
 export function Contact() {
   return (
@@ -30,12 +31,6 @@ export function Contact() {
         )}
 
         <div className="mt-11 flex flex-wrap gap-2.5">
-          <a
-            href={`mailto:${PROFILE.email}`}
-            className="inline-flex h-11.5 items-center bg-gold px-5.5 font-mono text-xs font-semibold tracking-[0.13em] text-ink-800 transition-colors hover:bg-gold-bright"
-          >
-            {PROFILE.email.toUpperCase()}
-          </a>
           {[
             { href: PROFILE.linkedin, label: "LINKEDIN ↗" },
             { href: PROFILE.github, label: "GITHUB ↗" },
@@ -53,8 +48,19 @@ export function Contact() {
           ))}
         </div>
 
+        <ContactForm />
+
         <p className="mt-16 font-mono text-[11px] tracking-[0.12em] text-paper-ghost">
-          BUILT WITH NEXT 16 AND REACT SERVER COMPONENTS. SOURCE ON GITHUB.
+          BUILT WITH NEXT 16 AND REACT SERVER COMPONENTS. SOURCE ON{" "}
+          <a
+            href="https://github.com/oak-wildwood/cooperage"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-line-700 underline-offset-2 transition-colors hover:text-gold hover:decoration-gold"
+          >
+            GITHUB
+          </a>
+          .
         </p>
       </div>
     </section>

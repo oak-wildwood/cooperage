@@ -115,7 +115,7 @@ plus glow for witnessed parts, dashed and unglowing for emerging ones.
 ### Page order
 
 ```
-01 Hero        name, title, claim, and EVERY link (GitHub, LinkedIn, resume, email)
+01 Hero        name, title, claim, and every external link (GitHub, LinkedIn, resume)
 02 About       bio; design-centric frontend; .NET as one supporting line
 03 Experience  the record and the numbers
 04 Skills      banded by depth, honestly
@@ -253,9 +253,9 @@ project), and dynamic OG images via `next/og`.
 
 ### 6. Phase 5 — Cutover
 
-Import to Vercel, point oakcooper.com, archive the Gatsby repo. Note from the vault:
-the apex currently resolves to `52.52.192.191` / `13.52.188.95`, which is not
-Netlify's standard apex IP — find where DNS is actually hosted before attempting it.
+Import to Vercel, point oakcooper.com at it, archive the Gatsby repo. Domain and DNS
+moved over 2026-09-07. Remaining: archive `oak-wildwood/dev-portfolio` once this
+build is content-complete.
 
 ---
 
