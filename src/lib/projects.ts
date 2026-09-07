@@ -135,7 +135,15 @@ export const PROJECTS: Project[] = [
       "This site. Next 16 and React Server Components, written in the open — the repository is as much the exhibit as the page you are reading.",
     stack: ["Next 16", "RSC", "Tailwind v4", "TypeScript"],
     repo: "https://github.com/oak-wildwood/cooperage",
-    screens: [],
+    screens: [
+      {
+        src: "/screens/cooperage/home.png",
+        alt: "cooperage's hero section: name, role, a quick-reference panel, and the start of the About section below.",
+        caption: "The repository is as much the exhibit",
+        width: 3530,
+        height: 1978,
+      },
+    ],
   },
   {
     slug: "recipe-site",
