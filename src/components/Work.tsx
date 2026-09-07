@@ -12,7 +12,7 @@ import { PROJECTS } from "@/lib/projects";
 export function Work() {
   return (
     <section id="work" aria-labelledby="work-heading" className="bg-ink-800">
-      <div className="mx-auto max-w-[1600px] px-12 pt-28 pb-16">
+      <div className="mx-auto max-w-[1600px] section-x pt-20 pb-12 lg:pt-28 lg:pb-16">
         <span className="label">05 &nbsp;/&nbsp; SELECTED WORK</span>
         <div className="mt-5 h-0.5 w-11 bg-gold" />
         <h2

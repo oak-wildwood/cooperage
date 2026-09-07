@@ -11,6 +11,12 @@ import type { Project } from "@/lib/projects";
  * and the next one scrolls up over it, later siblings painting over earlier ones.
  * No JavaScript, no scroll listener, no animation library. Height is slightly
  * under the viewport so a sliver of the panel beneath always shows.
+ *
+ * That pinning is `lg:` and up only. It exists to stage the reveal against the
+ * next panel's screenshot, and the screenshot column is itself `hidden` below
+ * `lg` — so below that breakpoint there's nothing to reveal, and pinning would
+ * only risk clipping a mobile viewport's worth of stacked text inside a fixed
+ * 92dvh box. Mobile gets plain document flow instead.
  */
 export function ProjectPanel({
   project,
@@ -25,9 +31,9 @@ export function ProjectPanel({
   return (
     <section
       aria-labelledby={`project-${project.slug}`}
-      className="sticky top-0 h-panel w-full overflow-hidden border-t border-line-700 bg-ink-800"
+      className="w-full border-t border-line-700 bg-ink-800 lg:sticky lg:top-0 lg:h-panel lg:overflow-hidden"
     >
-      <div className="mx-auto grid h-full max-w-[1600px] grid-cols-12 items-center gap-6 px-12 py-14">
+      <div className="mx-auto grid max-w-[1600px] grid-cols-12 items-center gap-6 section-x py-12 lg:h-full lg:py-14">
         <div className="col-span-12 flex flex-col lg:col-span-5">
           <div className="flex items-center justify-between">
             <span className="label">

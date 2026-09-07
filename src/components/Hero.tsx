@@ -11,7 +11,7 @@ const FACTS = [
 export function Hero() {
   return (
     <section id="top" className="bg-ink-800">
-      <div className="mx-auto grid max-w-[1600px] grid-cols-12 gap-6 px-12 pt-26 pb-24">
+      <div className="mx-auto grid max-w-[1600px] grid-cols-12 gap-6 section-x pt-24 pb-16 lg:pt-26 lg:pb-24">
         <div className="col-span-12 lg:col-span-7">
           <span className="label">
             01 &nbsp;/&nbsp; {PROFILE.title.toUpperCase()}
@@ -78,7 +78,9 @@ export function Hero() {
                 href={href}
                 download={download}
                 target={href.startsWith("http") ? "_blank" : undefined}
-                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                rel={
+                  href.startsWith("http") ? "noopener noreferrer" : undefined
+                }
                 className="inline-flex h-11.5 items-center border border-line-700 px-5.5 font-mono text-xs font-semibold tracking-[0.13em] text-paper transition-colors hover:border-line-600 hover:text-gold"
               >
                 {label}

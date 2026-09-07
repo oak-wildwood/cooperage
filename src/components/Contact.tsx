@@ -7,7 +7,7 @@ export function Contact() {
       aria-labelledby="contact-heading"
       className="border-t border-line-700 bg-ink-800"
     >
-      <div className="mx-auto max-w-[1600px] px-12 py-24">
+      <div className="mx-auto max-w-[1600px] section-x py-16 lg:py-24">
         <span className="label">06 &nbsp;/&nbsp; CONTACT</span>
 
         <h2

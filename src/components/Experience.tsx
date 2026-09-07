@@ -7,7 +7,7 @@ export function Experience() {
       aria-labelledby="experience-heading"
       className="border-t border-line-800 bg-ink-800"
     >
-      <div className="mx-auto grid max-w-[1600px] grid-cols-12 gap-6 px-12 py-24">
+      <div className="mx-auto grid max-w-[1600px] grid-cols-12 gap-6 section-x py-16 lg:py-24">
         <div className="col-span-12 lg:col-span-3">
           <h2 id="experience-heading" className="label">
             03 &nbsp;/&nbsp; EXPERIENCE
