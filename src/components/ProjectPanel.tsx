@@ -91,14 +91,18 @@ export function ProjectPanel({
         <div className="col-span-12 hidden justify-end lg:col-span-7 lg:flex">
           <figure className="w-full max-w-[620px]">
             {cover ? (
-              <Image
-                src={cover.src}
-                alt={cover.alt}
-                width={cover.width}
-                height={cover.height}
-                className="block w-full border border-line-700"
-                priority={index === 0}
-              />
+              <ScreenshotViewer project={project}>
+                <div className="group flex h-[46dvh] max-h-[460px] w-full cursor-zoom-in items-center justify-center overflow-hidden border border-line-700 bg-ink-900">
+                  <Image
+                    src={cover.src}
+                    alt={cover.alt}
+                    width={cover.width}
+                    height={cover.height}
+                    className="max-h-full max-w-full object-contain transition-opacity group-hover:opacity-90"
+                    priority={index === 0}
+                  />
+                </div>
+              </ScreenshotViewer>
             ) : (
               <div className="flex h-[400px] w-full items-center justify-center border-[1.5px] border-dashed border-line-700 bg-white/[0.012]">
                 <span className="label text-paper-ghost">AWAITING SCREENS</span>

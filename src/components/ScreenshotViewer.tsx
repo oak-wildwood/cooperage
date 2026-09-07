@@ -1,16 +1,35 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type KeyboardEvent,
+  type ReactNode,
+} from "react";
 import type { Project } from "@/lib/projects";
 
 /**
  * Trigger + overlay for cycling through a project's screens. Self-contained,
  * like `Menu.tsx`: this file owns the open/closed state and the trigger that
- * flips it, so `ProjectPanel` only needs to mount it behind the existing
+ * flips it, so callers only need to mount it behind the existing
  * `screens.length > 0` guard.
+ *
+ * `children`, when given, replaces the default "VIEW SCREENS" text as the
+ * trigger's content (used for the cover image in `ProjectPanel`) — each
+ * instance is independent, so the text trigger and the image trigger for the
+ * same project are two separate, self-contained mounts rather than one
+ * shared piece of state.
  */
-export function ScreenshotViewer({ project }: { project: Project }) {
+export function ScreenshotViewer({
+  project,
+  children,
+}: {
+  project: Project;
+  children?: ReactNode;
+}) {
   const { screens, name } = project;
   const [isOpen, setIsOpen] = useState(false);
   const [index, setIndex] = useState(0);
@@ -82,14 +101,19 @@ export function ScreenshotViewer({ project }: { project: Project }) {
           setIndex(0);
           setIsOpen(true);
         }}
-        className="border-b border-gold pb-1 font-mono text-xs font-semibold tracking-[0.16em] text-gold"
+        aria-label={children ? `View all screens for ${name}` : undefined}
+        className={
+          children
+            ? "block w-full text-left"
+            : "border-b border-gold pb-1 font-mono text-xs font-semibold tracking-[0.16em] text-gold"
+        }
       >
-        VIEW SCREENS &nbsp;→
+        {children ?? <>VIEW SCREENS &nbsp;→</>}
       </button>
 
       {isOpen && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-ink-900/90 p-8"
+          className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-ink-900/90 p-8"
           onClick={() => setIsOpen(false)}
         >
           <div
@@ -100,7 +124,7 @@ export function ScreenshotViewer({ project }: { project: Project }) {
             tabIndex={-1}
             onKeyDown={onKeyDown}
             onClick={(event) => event.stopPropagation()}
-            className="relative flex w-full max-w-3xl flex-col border border-line-700 bg-ink-800 p-6"
+            className="relative flex w-full max-w-6xl flex-col border border-line-700 bg-ink-800 p-6"
           >
             <div className="flex items-center justify-between">
               <h2 id={titleId} className="label">
@@ -127,14 +151,16 @@ export function ScreenshotViewer({ project }: { project: Project }) {
                 ←
               </button>
 
-              <Image
-                key={screen.src}
-                src={screen.src}
-                alt={screen.alt}
-                width={screen.width}
-                height={screen.height}
-                className="block max-h-[70vh] w-full border border-line-700 object-contain"
-              />
+              <div className="flex h-[70vh] max-h-[760px] flex-1 items-center justify-center overflow-hidden border border-line-700 bg-ink-900">
+                <Image
+                  key={screen.src}
+                  src={screen.src}
+                  alt={screen.alt}
+                  width={screen.width}
+                  height={screen.height}
+                  className="max-h-full max-w-full object-contain"
+                />
+              </div>
 
               <button
                 type="button"
