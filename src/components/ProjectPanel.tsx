@@ -51,6 +51,12 @@ export function ProjectPanel({
             {project.name}
           </h3>
 
+          {project.tagline && (
+            <p className="mt-1.5 font-mono text-sm text-paper-faint">
+              {project.tagline}
+            </p>
+          )}
+
           <p className="mt-6 max-w-[44ch] font-read text-[18px] font-light leading-relaxed text-paper-mute">
             {project.blurb}
           </p>

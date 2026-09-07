@@ -32,6 +32,10 @@ export type Screen = {
 export type Project = {
   slug: string;
   name: string;
+  /** For names that don't say what the thing is on their own (Cairn,
+   * cooperage) — a plain-language gloss shown next to the name. Most
+   * projects don't need one. */
+  tagline?: string;
   tier: Tier;
   year: string;
   blurb: string;
@@ -79,6 +83,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "cairn",
     name: "Cairn",
+    tagline: "IFS Parts Map",
     tier: "polished",
     year: "2026",
     blurb:
@@ -129,6 +134,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "cooperage",
     name: "cooperage",
+    tagline: "Dev Portfolio",
     tier: "building",
     year: "2026",
     blurb:
