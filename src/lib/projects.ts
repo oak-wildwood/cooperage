@@ -129,7 +129,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "postmarked",
     name: "Postmarked",
-    tier: "building",
+    tier: "polished",
     year: "2025",
     blurb:
       "A postcard tracker my household opens every day — address book, photos, and where each card is on its way to. Built for us, kept because it works.",
