@@ -68,9 +68,14 @@ buries the concepts in noise. Simple markup first, then make it beautiful.
 - **PR and commit descriptions are matter-of-fact.** State what the change is and
   what problem it solves, the way a human engineer's description would. Never
   narrate the chat that produced it (no "Oak asked about X").
-- **PR titles follow Conventional Commits** (`type: summary`, e.g. `docs:`, `feat:`,
-  `fix:`, `chore:`) — squash-merges reuse the PR title as the commit message, so the
-  title is what ends up in history. Enforced by CI.
+- **PR titles follow Conventional Commits** (`type: summary`) — squash-merges reuse
+  the PR title as the commit message, so the title is what ends up in history.
+  `type` must be exactly one of `feat`, `fix`, `refactor`, `test`, `docs`, `ci`,
+  `chore` — this list is closed, not illustrative; don't invent a type (e.g.
+  `content:`) that isn't on it. Keep the whole title to 66 characters or fewer, so
+  the squashed commit subject stays under 72 once GitHub appends `" (#123)"`.
+  Enforced by CI (`.github/workflows/pr-title.yml`, the source of truth if this
+  list and that file ever drift).
 
 ## Content status
 
