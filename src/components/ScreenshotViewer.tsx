@@ -41,6 +41,13 @@ export function ScreenshotViewer({
   const [isOpen, setIsOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const [device, setDevice] = useState<"mobile" | "desktop">(defaultDevice);
+  // Tracked by src, not a single boolean, so flipping through screens that
+  // were already loaded (including a revisit after closing and reopening —
+  // this component stays mounted) doesn't re-show the pulse for images the
+  // browser already has cached.
+  const [loadedSrcs, setLoadedSrcs] = useState<ReadonlySet<string>>(
+    () => new Set(),
+  );
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
@@ -75,6 +82,7 @@ export function ScreenshotViewer({
     ? screens.filter((s) => (s.device ?? "mobile") === device)
     : screens;
   const screen = visibleScreens[index];
+  const isLoaded = loadedSrcs.has(screen.src);
 
   function goPrev() {
     setIndex(
@@ -206,14 +214,26 @@ export function ScreenshotViewer({
                 glyph="←"
               />
 
-              <ScreenshotFrame size="overlay" className="flex-1">
+              <ScreenshotFrame size="overlay" className="relative flex-1">
+                {!isLoaded && (
+                  <div className="absolute inset-0 animate-pulse bg-ink-700" />
+                )}
                 <Image
                   key={screen.src}
                   src={screen.src}
                   alt={screen.alt}
                   width={screen.width}
                   height={screen.height}
-                  className="max-h-full max-w-full object-contain"
+                  onLoad={() =>
+                    setLoadedSrcs((prev) =>
+                      prev.has(screen.src)
+                        ? prev
+                        : new Set(prev).add(screen.src),
+                    )
+                  }
+                  className={`max-h-full max-w-full object-contain transition-opacity duration-300 ${
+                    isLoaded ? "opacity-100" : "opacity-0"
+                  }`}
                 />
               </ScreenshotFrame>
 
