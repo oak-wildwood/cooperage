@@ -216,7 +216,7 @@ export function ScreenshotViewer({
 
               <ScreenshotFrame size="overlay" className="relative flex-1">
                 {!isLoaded && (
-                  <div className="absolute inset-0 animate-pulse bg-ink-600" />
+                  <div className="absolute inset-0 animate-pulse bg-ink-700" />
                 )}
                 <Image
                   key={screen.src}
