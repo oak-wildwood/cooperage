@@ -51,6 +51,16 @@ export function ScreenshotViewer({
     };
   }, [isOpen]);
 
+  // Locks scroll while the overlay is open, same as Menu.tsx's mobile
+  // dropdown — otherwise the page behind the dialog scrolls with it.
+  useEffect(() => {
+    if (!isOpen) return;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   useEscapeToClose(isOpen, () => setIsOpen(false));
 
   const screen = screens[index];
