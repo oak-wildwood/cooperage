@@ -53,7 +53,7 @@ export const PROJECTS: Project[] = [
     tier: "polished",
     year: "2026",
     blurb:
-      "A private log for job-search activity — built to satisfy the record most US unemployment agencies can demand at any time, for any week of a benefit year.",
+      "A private log for job-search activity — built for the record most US unemployment agencies can ask for at any time, for any week of a benefit year.",
     stack: ["Vue 3", "TypeScript", "Vitest", "Accessibility"],
     repo: "https://github.com/oak-wildwood/work-search-log",
     screens: [
@@ -125,7 +125,7 @@ export const PROJECTS: Project[] = [
     slug: "postmarked",
     name: "Postmarked",
     tier: "building",
-    year: "2026",
+    year: "2025",
     blurb:
       "A postcard tracker my household opens every day — address book, photos, and where each card is on its way to. Built for us, kept because it works.",
     stack: ["Vue 3", "Pinia", "Firebase", "PWA"],

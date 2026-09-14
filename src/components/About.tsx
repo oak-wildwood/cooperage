@@ -17,12 +17,12 @@ export function About() {
           </p>
 
           <p className="mt-6.5 max-w-[64ch] font-read text-[17px] font-light leading-[1.7] text-paper-mute">
-            What I care about is the seam between design and engineering —
+            What I care about most is where design and engineering meet —
             design systems, component libraries, the shared vocabulary that
-            stops a product drifting apart. Most of the last four years went
-            into that same Vue application: building features, co-leading its
-            Vue&nbsp;3 migration, and rebuilding the deployment and
-            observability infrastructure underneath it.
+            keeps a product from drifting apart. Most of the last four years
+            went into that same Vue app: building features, co-leading the
+            move to Vue&nbsp;3, and rebuilding the deployment and
+            observability underneath it.
           </p>
 
           <p className="mt-5 max-w-[64ch] font-read text-[17px] font-light leading-[1.7] text-paper-mute">
