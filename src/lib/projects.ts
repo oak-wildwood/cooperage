@@ -37,9 +37,9 @@ export type Screen = {
 export type Project = {
   slug: string;
   name: string;
-  /** For names that don't say what the thing is on their own (Cairn,
-   * cooperage) — a plain-language gloss shown next to the name. Most
-   * projects don't need one. */
+  /** For names that don't say what the thing is on their own (Cairn) — a
+   * plain-language gloss shown next to the name. Most projects don't need
+   * one. */
   tagline?: string;
   tier: Tier;
   year: string;
@@ -206,8 +206,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "cooperage",
-    name: "cooperage",
-    tagline: "Dev Portfolio",
+    name: "Dev Portfolio",
     tier: "building",
     year: "2026",
     blurb:
@@ -217,7 +216,7 @@ export const PROJECTS: Project[] = [
     screens: [
       {
         src: "/screens/cooperage/home.png",
-        alt: "cooperage's hero section: name, role, a quick-reference panel, and the start of the About section below.",
+        alt: "This site's hero section: name, role, a quick-reference panel, and the start of the About section below.",
         caption: "The repository is as much the exhibit",
         width: 3530,
         height: 1978,
