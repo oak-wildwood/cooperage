@@ -33,8 +33,14 @@ export function ScreenshotViewer({
   children?: ReactNode;
 }) {
   const { screens, name } = project;
+  const hasMobile = screens.some((s) => (s.device ?? "mobile") === "mobile");
+  const hasDesktop = screens.some((s) => s.device === "desktop");
+  const showDeviceToggle = hasMobile && hasDesktop;
+  const defaultDevice = hasMobile ? "mobile" : "desktop";
+
   const [isOpen, setIsOpen] = useState(false);
   const [index, setIndex] = useState(0);
+  const [device, setDevice] = useState<"mobile" | "desktop">(defaultDevice);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
@@ -51,16 +57,39 @@ export function ScreenshotViewer({
     };
   }, [isOpen]);
 
+  // Locks scroll while the overlay is open, same as Menu.tsx's mobile
+  // dropdown — otherwise the page behind the dialog scrolls with it.
+  useEffect(() => {
+    if (!isOpen) return;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   useEscapeToClose(isOpen, () => setIsOpen(false));
 
-  const screen = screens[index];
+  // Unfiltered when there's nothing to filter (the common case: one device,
+  // no `device` tags at all) so untagged projects behave exactly as before.
+  const visibleScreens = showDeviceToggle
+    ? screens.filter((s) => (s.device ?? "mobile") === device)
+    : screens;
+  const screen = visibleScreens[index];
 
   function goPrev() {
-    setIndex((current) => (current - 1 + screens.length) % screens.length);
+    setIndex(
+      (current) =>
+        (current - 1 + visibleScreens.length) % visibleScreens.length,
+    );
   }
 
   function goNext() {
-    setIndex((current) => (current + 1) % screens.length);
+    setIndex((current) => (current + 1) % visibleScreens.length);
+  }
+
+  function selectDevice(next: "mobile" | "desktop") {
+    setDevice(next);
+    setIndex(0);
   }
 
   function trapFocus(event: KeyboardEvent<HTMLDivElement>) {
@@ -112,6 +141,7 @@ export function ScreenshotViewer({
         type="button"
         onClick={() => {
           setIndex(0);
+          setDevice(defaultDevice);
           setIsOpen(true);
         }}
         aria-label={trigger.label}
@@ -149,10 +179,29 @@ export function ScreenshotViewer({
               </button>
             </div>
 
+            {showDeviceToggle && (
+              <div
+                role="group"
+                aria-label="Screenshot device"
+                className="mt-3 flex items-center gap-4 sm:mt-4"
+              >
+                <DeviceButton
+                  label="MOBILE"
+                  active={device === "mobile"}
+                  onClick={() => selectDevice("mobile")}
+                />
+                <DeviceButton
+                  label="DESKTOP"
+                  active={device === "desktop"}
+                  onClick={() => selectDevice("desktop")}
+                />
+              </div>
+            )}
+
             <div className="mt-4 flex items-center gap-1.5 sm:mt-6 sm:gap-4">
               <NavButton
                 onClick={goPrev}
-                disabled={screens.length < 2}
+                disabled={visibleScreens.length < 2}
                 label="Previous screenshot"
                 glyph="←"
               />
@@ -170,7 +219,7 @@ export function ScreenshotViewer({
 
               <NavButton
                 onClick={goNext}
-                disabled={screens.length < 2}
+                disabled={visibleScreens.length < 2}
                 label="Next screenshot"
                 glyph="→"
               />
@@ -181,13 +230,38 @@ export function ScreenshotViewer({
                 {screen.caption.toUpperCase()}
               </span>
               <span className="label shrink-0 whitespace-nowrap text-[11px] tracking-[0.12em]">
-                {index + 1} / {screens.length}
+                {index + 1} / {visibleScreens.length}
               </span>
             </div>
           </div>
         </div>
       )}
     </>
+  );
+}
+
+function DeviceButton({
+  label,
+  active,
+  onClick,
+}: {
+  label: string;
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      className={`action-label border-b pb-1 transition-colors ${
+        active
+          ? "border-gold text-gold"
+          : "border-transparent text-paper-faint hover:text-paper-dim"
+      }`}
+    >
+      {label}
+    </button>
   );
 }
 

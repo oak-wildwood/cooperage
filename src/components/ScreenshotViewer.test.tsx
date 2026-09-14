@@ -78,3 +78,58 @@ describe("ScreenshotViewer", () => {
     expect(screen.getByText("1 / 3")).toBeInTheDocument();
   });
 });
+
+const responsiveProject: Project = {
+  slug: "fixture-responsive",
+  name: "Fixture Responsive",
+  tier: "polished",
+  year: "2026",
+  blurb: "A fixture with both mobile and desktop screens.",
+  stack: ["Test"],
+  screens: [
+    { src: "/screens/mobile-1.png", alt: "Mobile home", caption: "Mobile home", width: 400, height: 800 },
+    { src: "/screens/mobile-2.png", alt: "Mobile detail", caption: "Mobile detail", width: 400, height: 800 },
+    { src: "/screens/desktop-1.png", alt: "Desktop home", caption: "Desktop home", width: 1600, height: 900, device: "desktop" },
+  ],
+};
+
+describe("ScreenshotViewer device toggle", () => {
+  it("shows no toggle when a project has only one device", () => {
+    render(<ScreenshotViewer project={project} />);
+    openViewer();
+    expect(screen.queryByRole("group", { name: /screenshot device/i })).not.toBeInTheDocument();
+  });
+
+  it("defaults to mobile and filters the count and images to the active device", () => {
+    render(<ScreenshotViewer project={responsiveProject} />);
+    openViewer();
+
+    expect(screen.getByRole("button", { name: "MOBILE" })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByText("1 / 2")).toBeInTheDocument();
+    expect(screen.getByText("MOBILE HOME")).toBeInTheDocument();
+  });
+
+  it("switches to desktop screens and resets to the first one", () => {
+    render(<ScreenshotViewer project={responsiveProject} />);
+    openViewer();
+    fireEvent.keyDown(screen.getByRole("dialog"), { key: "ArrowRight" });
+    expect(screen.getByText("2 / 2")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "DESKTOP" }));
+
+    expect(screen.getByRole("button", { name: "DESKTOP" })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByText("1 / 1")).toBeInTheDocument();
+    expect(screen.getByText("DESKTOP HOME")).toBeInTheDocument();
+  });
+
+  it("resets to the default device when reopened", () => {
+    render(<ScreenshotViewer project={responsiveProject} />);
+    openViewer();
+    fireEvent.click(screen.getByRole("button", { name: "DESKTOP" }));
+    fireEvent.keyDown(screen.getByRole("dialog"), { key: "Escape" });
+
+    openViewer();
+    expect(screen.getByRole("button", { name: "MOBILE" })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByText("1 / 2")).toBeInTheDocument();
+  });
+});

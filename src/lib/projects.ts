@@ -27,6 +27,11 @@ export type Screen = {
   caption: string;
   width: number;
   height: number;
+  /** Omitted means "mobile" — most projects only have one form factor, and
+   * tagging every existing screen would be busywork. Set both "mobile" and
+   * "desktop" on a project's screens to get the MOBILE/DESKTOP toggle in
+   * `ScreenshotViewer`; a project with only one device present shows no toggle. */
+  device?: "mobile" | "desktop";
 };
 
 export type Project = {
@@ -129,7 +134,75 @@ export const PROJECTS: Project[] = [
     blurb:
       "A postcard tracker my household opens every day — address book, photos, and where each card is on its way to. Built for us, kept because it works.",
     stack: ["Vue 3", "Pinia", "Firebase", "PWA"],
-    screens: [],
+    screens: [
+      {
+        src: "/screens/postmarked/mobile-dashboard-light.png",
+        alt: "Postmarked's dashboard: who to send next, upcoming birthdays, and running totals of contacts, sent, and never-sent.",
+        caption: "Who's overdue, at a glance",
+        width: 1170,
+        height: 2532,
+      },
+      {
+        src: "/screens/postmarked/mobile-dashboard-dark.png",
+        alt: "The same dashboard in dark mode.",
+        caption: "Same dashboard, dark mode",
+        width: 1170,
+        height: 2532,
+      },
+      {
+        src: "/screens/postmarked/mobile-address-book.png",
+        alt: "The address book: contacts as cards with birthday, address, phone, and email, each with quick View and Send actions.",
+        caption: "Every contact, one card each",
+        width: 1170,
+        height: 2532,
+      },
+      {
+        src: "/screens/postmarked/mobile-all-mail.png",
+        alt: "The All Mail view: a filterable grid of sent postcards, cards, and packages, each with a photo, sender and recipient, and received status.",
+        caption: "Every postcard, tracked",
+        width: 1170,
+        height: 2532,
+      },
+      {
+        src: "/screens/postmarked/mobile-send-postcard.png",
+        alt: "The Send a Postcard form: recipient, type, description, location, sender, date, and a photo upload.",
+        caption: "Logging what went out",
+        width: 1170,
+        height: 2532,
+      },
+      {
+        src: "/screens/postmarked/desktop-dashboard-light.png",
+        alt: "The dashboard at desktop width, with the send-next card and birthdays list side by side.",
+        caption: "Who's overdue, at a glance",
+        width: 2880,
+        height: 1800,
+        device: "desktop",
+      },
+      {
+        src: "/screens/postmarked/desktop-dashboard-dark.png",
+        alt: "The same desktop dashboard in dark mode.",
+        caption: "Same dashboard, dark mode",
+        width: 2880,
+        height: 1800,
+        device: "desktop",
+      },
+      {
+        src: "/screens/postmarked/desktop-address-book.png",
+        alt: "The address book at desktop width, contacts laid out in a multi-column card grid.",
+        caption: "Every contact, one card each",
+        width: 2880,
+        height: 1800,
+        device: "desktop",
+      },
+      {
+        src: "/screens/postmarked/desktop-all-mail.png",
+        alt: "The All Mail view at desktop width, sent postcards, cards, and packages in a photo grid.",
+        caption: "Every postcard, tracked",
+        width: 2880,
+        height: 1800,
+        device: "desktop",
+      },
+    ],
   },
   {
     slug: "cooperage",
