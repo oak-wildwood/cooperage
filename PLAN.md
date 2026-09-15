@@ -245,6 +245,13 @@ Needs index state, keyboard navigation (arrows, Escape), and focus management.
   nothing public to point at. Filling the Prototype tier needs a night of design work.
 - ✅ `public/oak-cooper-resume-2026.pdf` added; the Hero's resume link now has a
   `download` attribute so it saves instead of opening inline in the browser.
+- ✅ **Resume refresh — done 2026-09-15.** New PDF from
+  `~/Documents/2026 Job Search/Oak Cooper Resume 2026.pdf` replaced the old one.
+  `resume.ts` ROLES/EARLIER synced against the new facts (Pinia migration and the
+  reconditioning-workflow bullet added to ACV; Centrafuse added to EARLIER).
+  Left `PROFILE.claim` and `SKILLS` untouched — both are deliberate site-voice
+  edits (see the voice pass above and the frontend-only positioning call), not a
+  transcription of the resume, so they don't move just because the PDF did.
 
 ### 5. Phase 4 — Server features
 
