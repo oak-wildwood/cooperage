@@ -30,7 +30,9 @@ export const ROLES: Role[] = [
     company: "ACV Auctions · ACV MAX",
     bullets: [
       "Co-led the Vue 2 → Vue 3 / Vuetify 3 migration of a ~300-component application, clearing the Vuetify breakages that were the migration's biggest blocker.",
+      "Migrated state management from a hand-rolled GraphQL client to Pinia, centralizing data-fetching and state across the ~300-component app during that migration.",
       "Moved the deployment pipeline off Vercel and GitHub Actions onto AWS and Jenkins, rebuilding branch previews from scratch — saving ~$80K/yr.",
+      "Built an itemized reconditioning workflow for vehicle appraisals, replacing lump-sum entry with editable, GraphQL-backed line items.",
       "Built frontend browser observability from scratch, twice — New Relic, then Datadog RUM — adding anomaly detection to catch the silent failures threshold alerts miss.",
       "Cut local test-suite runtime in half and memory use by 66%, then encoded the fixes into an automated pre-PR review step.",
       "Engineered the guardrails that keep AI-generated code trustworthy, and ran coding and systems-design interviews as the team scaled across the US and India.",
@@ -44,7 +46,7 @@ export const ROLES: Role[] = [
     company: "Hudson MX",
     bullets: [
       "Led a small frontend team owning six Angular apps and one React app for an ad-tech platform.",
-      "Introduced an Nx monorepo with a microfrontend architecture, and ran a private npm registry of shared UI components consumed by 30+ apps across the company.",
+      "Introduced an Nx monorepo with a microfrontend architecture, and managed a private npm registry of shared UI components consumed by 30+ apps and microfrontends across the company.",
       "Established a UI design system on Storybook in partnership with the UX team.",
     ],
   },
@@ -63,7 +65,7 @@ export const ROLES: Role[] = [
 ];
 
 export const EARLIER =
-  "Earlier: Sr. Angular Architect at Rockwater, Sr. Engineer at Preparis, technical lead for fourteen developers at Morneau Shepell, and back through Kabbage, HotDocs and FNC to 2001.";
+  "Earlier: Sr. Angular Architect at Rockwater, Sr. Engineer at Preparis, technical lead for fourteen developers at Morneau Shepell, and back through Kabbage, HotDocs, Centrafuse and FNC to 2001.";
 
 export type SkillBand = {
   label: string;
