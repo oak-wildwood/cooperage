@@ -252,6 +252,16 @@ Needs index state, keyboard navigation (arrows, Escape), and focus management.
   Left `PROFILE.claim` and `SKILLS` untouched — both are deliberate site-voice
   edits (see the voice pass above and the frontend-only positioning call), not a
   transcription of the resume, so they don't move just because the PDF did.
+- ⚠️ **Test run of the `update-resume` local skill — 2026-09-15, not a real
+  resume update.** Oak asked for a live test of the new `.claude/skills/`
+  workflow with a fabricated "React skills" addition. The PDF currently in
+  `public/oak-cooper-resume-2026.pdf` on this branch is test content, not
+  Oak's real resume — do not treat it as authoritative if this branch is ever
+  revisited. `SKILLS`' "Recent, not deep" band picked up `Server Actions`
+  since that's a legitimate frontend/recent fact in the same spirit as the
+  React/Next.js/Server Components already there; `PROFILE.claim` was left
+  alone since nothing in the test content touched its subject matter. This
+  entry (and this branch/PR) should be discarded once the test is reviewed.
 
 ### 5. Phase 4 — Server features
 
