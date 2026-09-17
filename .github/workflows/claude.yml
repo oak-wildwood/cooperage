@@ -49,9 +49,14 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           # Mention "haiku" or "opus" in the triggering comment to override
-          # the claude-sonnet-5 default set above. --allowedTools ADDS to
-          # (not replaces) the action's base tool set, granting the scripts
+          # the claude-sonnet-5 default set above.
+          #
+          # IMPORTANT: passing --allowedTools at all suppresses the action's default Write/Edit
+          # grant instead of adding to it, despite what earlier comments here implied — confirmed
+          # 2026-09-17 in cadre when a real run had no Write/Edit in ALLOWED_TOOLS, could only
+          # Read/Glob/Grep, and died after 11 straight permission denials trying to create files.
+          # Write and Edit are listed explicitly below for that reason, alongside the scripts
           # Claude needs to install deps and verify its own changes.
           claude_args: |
             --model ${{ steps.model.outputs.model }}
-            --allowedTools "Bash(npm install:*),Bash(npm ci:*),Bash(npm run test:*),Bash(npm run build:*),Bash(npm run lint:*)"
+            --allowedTools "Write,Edit,Bash(npm install:*),Bash(npm ci:*),Bash(npm run test:*),Bash(npm run build:*),Bash(npm run lint:*)"
