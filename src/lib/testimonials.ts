@@ -41,7 +41,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: "kathryn-petralia",
     name: "Kathryn Petralia",
-    title: "Senior leader",
+    title: "COO",
     company: "Kabbage",
     relationship: "Senior to Oak, didn't manage him directly",
     quote:
