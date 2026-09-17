@@ -122,7 +122,7 @@ export const SKILLS: SkillBand[] = [
   {
     label: "Recent, not deep",
     tone: "dashed",
-    items: ["React", "Next.js", "Server Components", "Svelte"],
+    items: ["React", "Next.js", "Server Components", "Server Actions", "Svelte"],
     caption:
       "Dashed for the same reason the projects are. This site is the React one; Cairn is the Svelte one. Both are recent.",
   },
