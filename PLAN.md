@@ -115,12 +115,14 @@ plus glow for witnessed parts, dashed and unglowing for emerging ones.
 ### Page order
 
 ```
-01 Hero        name, title, claim, and every external link (GitHub, LinkedIn, resume)
-02 About       bio; design-centric frontend; .NET as one supporting line
-03 Experience  the record and the numbers
-04 Skills      banded by depth, honestly
-05 Work        the sticky panel stack — evidence
-06 Contact
+01 Hero            name, title, claim, and every external link (GitHub, LinkedIn, resume)
+02 About           bio; design-centric frontend; .NET as one supporting line
+03 Experience      the record and the numbers
+04 Skills          banded by depth, honestly
+05 Work            the sticky panel stack — evidence
+06 Recommendations manual-cycle carousel of LinkedIn recommendations — third-party
+                   validation of the evidence above, right before the CTA
+07 Contact
 ```
 
 Links live in the hero so a recruiter with thirty seconds needs no scrolling.
@@ -165,12 +167,16 @@ src/
   lib/
     projects.ts        Tier type, TIERS table, PROJECTS array
     resume.ts          PROFILE, ROLES, EARLIER, SKILLS — from the 2026 resume
+    testimonials.ts    Testimonial type, TESTIMONIALS array — LinkedIn recs,
+                        trimmed the same way resume.ts trims for on-screen reading
   components/
     Hero.tsx  About.tsx  Experience.tsx  Skills.tsx  Contact.tsx
     Work.tsx           stack wrapper — scopes sticky
     ProjectPanel.tsx   one panel; `sticky top-0 h-panel` is the effect
     TierMeter.tsx      the four-rule meter
-    Menu.tsx           the one "use client" island — collapsing top bar
+    Testimonials.tsx   Recommendations section wrapper (Server Component)
+    TestimonialCarousel.tsx  "use client" island — manual prev/next + dots
+    Menu.tsx           a "use client" island — collapsing top bar
   hooks/
     useCollapsedPastHero.ts   hero-visibility → collapsed boolean
     useActiveSection.ts       scroll-driven active section id, plus the
